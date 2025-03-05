@@ -10,7 +10,7 @@ async function fetchJobData(slug: string) {
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
 
   const response = await fetch(
-    `https://dev-api.instient.ai/api/jobopenings?filters[slug][$eq]=${slug}&populate=*`,
+    `https://api.instient.ai/api/jobopenings?filters[slug][$eq]=${slug}&populate=*`,
     {
       headers: {
         Authorization: `Bearer ${apiToken}`,
@@ -92,7 +92,7 @@ export default function JobOpeningSlugPage({ params }: { params: Promise<{ slug:
     <main>
       <div className="w-full h-[425px] sm:h-[450px] p-6 font-ubuntu relative">
         <Image
-          src={url ? `https://dev-api.instient.ai${url}` : '/default-image.png'}
+          src={url ? `https://api.instient.ai${url}` : '/default-image.png'}
           alt="Background Image"
           fill
           priority

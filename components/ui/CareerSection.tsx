@@ -30,7 +30,7 @@ export function CareerSection() {
             redirect: "follow" as RequestRedirect,
         };
 
-        fetch("https://dev-api.instient.ai/api/career-instients?populate=*", requestOptions)
+        fetch("https://api.instient.ai/api/career-instients?populate=*", requestOptions)
             .then((response) => response.json())
             .then((result) => {
                 setCareerData(result.data);
@@ -57,7 +57,7 @@ export function CareerSection() {
                       
                         {/* Background Underlap Image */}
                         <Image
-                            src={`https://dev-api.instient.ai${item.Image.url}`}
+                            src={`https://api.instient.ai${item.Image.url}`}
                             alt="Career Background"
                             className="absolute top-[25%] sm:top-1/3 left-1/2 sm:left-[50%] w-full h-[300px] bg-gray-200 -translate-y-1/2 -translate-x-1/2 z-0 rounded-md"
                             width={407}

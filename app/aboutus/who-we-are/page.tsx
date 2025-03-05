@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 async function fetchWhoWeArePageData() {
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
-  const response = await fetch(`https://dev-api.instient.ai/api/whowearepage?populate=*`, {
+  const response = await fetch(`https://api.instient.ai/api/whowearepage?populate=*`, {
     headers: { Authorization: `Bearer ${apiToken}` },
     cache: "no-store",
   });
@@ -32,7 +32,7 @@ export default async function WhoWeArePage() {
   return (
     <main>
       <div className="w-full h-[425px] sm:h-[450px] p-6 font-ubuntu relative">
-        <Image src={`https://dev-api.instient.ai${mainImageUrl}`} alt="Career Image" fill priority sizes="100vw" className="object-cover object-center -z-10" />
+        <Image src={`https://api.instient.ai${mainImageUrl}`} alt="Career Image" fill priority sizes="100vw" className="object-cover object-center -z-10" />
         <div className="my-64 sm:my-64">
           <Card className="lg:w-[600px] sm:w-[650px] bg-gradient-to-b from-[#3c83c1] to-[#459ae5] text-white font-ubuntu">
             <CardHeader>
@@ -68,7 +68,7 @@ export default async function WhoWeArePage() {
             </Link>
           </div>
           <div className="md:w-1/2 flex justify-end">
-            {bannerImageUrl && <Image src={`https://dev-api.instient.ai${bannerImageUrl}`} alt="Guiding Values" width={700} height={400} className="shadow-lg" />}
+            {bannerImageUrl && <Image src={`https://api.instient.ai${bannerImageUrl}`} alt="Guiding Values" width={700} height={400} className="shadow-lg" />}
           </div>
         </div>
       </section>
@@ -92,7 +92,7 @@ function Section({ contentTitle, contentAnswer }: { contentTitle: string; conten
 
 async function fetchExploreInstientData() {
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
-  const response = await fetch(`https://dev-api.instient.ai/api/whowearepage?populate=*`, {
+  const response = await fetch(`https://api.instient.ai/api/whowearepage?populate=*`, {
     headers: { Authorization: `Bearer ${apiToken}` },
     cache: "no-store",
   });
@@ -116,7 +116,7 @@ async function ExploreInstient() {
       <div className="flex flex-wrap justify-center px-8 sm:justify-start gap-28 mt-24 sm:mt-16">
         {cards.map((card, index) => (
           <div key={index} className="relative mb-14 sm:mb-14 w-full sm:w-[407px]">
-            {card.imageUrl && <Image src={`https://dev-api.instient.ai${card.imageUrl}`} alt={card.title} width={407} height={300} className="absolute top-[25%] sm:top-1/3 left-1/2 sm:left-[50%] w-full h-[300px] bg-gray-200 -translate-y-1/2 -translate-x-1/2 z-0 rounded-md" />}
+            {card.imageUrl && <Image src={`https://api.instient.ai${card.imageUrl}`} alt={card.title} width={407} height={300} className="absolute top-[25%] sm:top-1/3 left-1/2 sm:left-[50%] w-full h-[300px] bg-gray-200 -translate-y-1/2 -translate-x-1/2 z-0 rounded-md" />}
             <Card className="relative py-4 shadow-xl rounded-lg bg-white z-10 mt-28 w-[90%] mx-auto">
               <CardContent><p className="text-2xl py-3 font-ubuntu font-extralight">{card.title}</p></CardContent>
               <CardFooter className="flex justify-end sm:py-6 pb-6">

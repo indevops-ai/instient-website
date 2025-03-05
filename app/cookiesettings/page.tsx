@@ -6,7 +6,7 @@ async function fetchCookieSettingsPageData() {
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
 
   const response = await fetch(
-    `https://dev-api.instient.ai/api/cookiesettingspage?populate=*`, 
+    `https://api.instient.ai/api/cookiesettingspage?populate=*`, 
     {
       headers: {
         Authorization: `Bearer ${apiToken}`,
@@ -36,7 +36,7 @@ export default async function CookieSettingsPage() {
     <main>
       <div className="w-full h-[425px] sm:h-[450px] p-6 font-ubuntu relative ">
         <Image
-          src={url ? `https://dev-api.instient.ai${url}` : '/default-image.png'} // Use default image if url is undefined
+          src={url ? `https://api.instient.ai${url}` : '/default-image.png'} // Use default image if url is undefined
           alt="Background Image"
           fill
           priority

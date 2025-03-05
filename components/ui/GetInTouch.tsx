@@ -46,7 +46,7 @@ export default function GetInTouch({ isOpen, onClose }: GetInTouchProps): JSX.El
   React.useEffect(() => {
     const fetchOptions = async () => {
       try {
-        const response = await fetch("https://dev-api.instient.ai/api/getintouches", {
+        const response = await fetch("https://api.instient.ai/api/getintouches", {
           method: "GET",
           headers: {
             Authorization: `Bearer ${apiToken}`,
@@ -82,7 +82,7 @@ export default function GetInTouch({ isOpen, onClose }: GetInTouchProps): JSX.El
       return;
     }
     try {
-      const response = await fetch("https://dev-api.instient.ai/api/contact-requests", {
+      const response = await fetch("https://api.instient.ai/api/contact-requests", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${apiToken}`,

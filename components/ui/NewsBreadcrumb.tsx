@@ -17,7 +17,7 @@ interface NewsItem {
 async function fetchNews(): Promise<Subpage[]> {
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
 
-  const response = await fetch("https://dev-api.instient.ai/api/news-instients?populate=*", {
+  const response = await fetch("https://api.instient.ai/api/news-instients?populate=*", {
     headers: {
       Authorization: `Bearer ${apiToken}`,
     },

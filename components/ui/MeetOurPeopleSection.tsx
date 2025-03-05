@@ -28,7 +28,7 @@ export function MeetOurPeopleSection() {
       redirect: "follow" as RequestRedirect,
     };
 
-    fetch("https://dev-api.instient.ai/api/meetourpeople-instients?populate=*", requestOptions)
+    fetch("https://api.instient.ai/api/meetourpeople-instients?populate=*", requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setPeopleData(result.data);
@@ -45,7 +45,7 @@ export function MeetOurPeopleSection() {
               <div className="flex flex-col gap-2 cursor-pointer hover:scale-105 transition-transform">
                 <div className="relative rounded-lg overflow-hidden aspect-square">
                   <Image
-                    src={`https://dev-api.instient.ai${person.Image.url}`}
+                    src={`https://api.instient.ai${person.Image.url}`}
                     alt={person.Name}
                     width={400}
                     height={400}

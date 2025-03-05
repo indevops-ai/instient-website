@@ -23,7 +23,7 @@ export default function JobOpeningsPage() {
     const fetchJobData = async () => {
       if (!apiToken) return;
       try {
-        const response = await fetch("https://dev-api.instient.ai/api/jobopeningpage?populate=*", {
+        const response = await fetch("https://api.instient.ai/api/jobopeningpage?populate=*", {
           headers: {
             Authorization: `Bearer ${apiToken}`,
           },
@@ -59,7 +59,7 @@ export default function JobOpeningsPage() {
     <main>
       <div className="w-full h-[425px] sm:h-[450px] p-6 font-ubuntu relative">
           <Image
-            src={`https://dev-api.instient.ai${jobData.Image.url}`} // Dynamically set the full image URL from the API
+            src={`https://api.instient.ai${jobData.Image.url}`} // Dynamically set the full image URL from the API
             alt="Career Image"
             fill
             priority

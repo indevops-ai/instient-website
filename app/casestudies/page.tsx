@@ -25,7 +25,7 @@ export default function CaseStudies() {
     const fetchCaseStudyData = async () => {
       if (!apiToken) return;
       try {
-        const response = await fetch("https://dev-api.instient.ai/api/casestudypage?populate=*", {
+        const response = await fetch("https://api.instient.ai/api/casestudypage?populate=*", {
           headers: {
             Authorization: `Bearer ${apiToken}`,
           }
@@ -63,7 +63,7 @@ export default function CaseStudies() {
       <div className="w-full h-[425px] sm:h-[450px] p-6 font-ubuntu relative">
         {/* Background Image */}
         <Image 
-          src={`https://dev-api.instient.ai${caseStudyData.Image.url}`} // Dynamically set the full image URL from the API
+          src={`https://api.instient.ai${caseStudyData.Image.url}`} // Dynamically set the full image URL from the API
           alt="Career Image"
           fill
           priority

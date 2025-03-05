@@ -26,7 +26,7 @@ export function ServiceSection() {
     async function fetchServices() {
       
       try {
-        const response = await fetch("https://dev-api.instient.ai/api/service-instients?populate=*", {
+        const response = await fetch("https://api.instient.ai/api/service-instients?populate=*", {
           headers: {
             Authorization: `Bearer ${apiToken}`,
           },
@@ -57,7 +57,7 @@ export function ServiceSection() {
             <div key={service.id} className="relative mb-14 sm:mb-14 w-full sm:w-[407px]">
               {/* Background Underlap */}
                <Image
-                  src={`https://dev-api.instient.ai${service.Image_Card.url}`} // Assuming item has BackgroundImage property
+                  src={`https://api.instient.ai${service.Image_Card.url}`} // Assuming item has BackgroundImage property
                   alt="Career Background"
                   className="absolute top-[25%] sm:top-1/3 left-1/2 sm:left-[50%] w-full h-[300px] bg-gray-200 -translate-y-1/2 -translate-x-1/2 z-0 rounded-md"
                   width={407} // Adjust based on your design

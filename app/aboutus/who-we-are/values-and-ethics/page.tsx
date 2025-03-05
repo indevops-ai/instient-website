@@ -6,7 +6,7 @@ async function fetchEthicsAndValuesPageData() {
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
 
   const response = await fetch(
-    `https://dev-api.instient.ai/api/ethicsandvaluespage?populate=*`,
+    `https://api.instient.ai/api/ethicsandvaluespage?populate=*`,
     {
       headers: {
         Authorization: `Bearer ${apiToken}`,
@@ -36,7 +36,7 @@ export default async function EthicsAndValuesPage() {
       <div className="w-full h-[425px] sm:h-[450px] p-6 font-ubuntu relative">
         {url && (
           <Image
-            src={`https://dev-api.instient.ai${url}`}
+            src={`https://api.instient.ai${url}`}
             alt="Ethics and Values Image"
             fill
             priority

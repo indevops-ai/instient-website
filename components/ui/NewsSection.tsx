@@ -33,7 +33,7 @@ export function NewsSection() {
       redirect: "follow" as RequestRedirect,
     };
 
-    fetch("https://dev-api.instient.ai/api/news-instients", requestOptions)
+    fetch("https://api.instient.ai/api/news-instients", requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setNewsData(result.data);

@@ -27,7 +27,7 @@ export default function CareerPath() {
       const fetchCareerPathData = async () => {
         if (!apiToken) return;
         try {
-          const response = await fetch("https://dev-api.instient.ai/api/careerpathpage?populate=*", {
+          const response = await fetch("https://api.instient.ai/api/careerpathpage?populate=*", {
             headers: {
               Authorization: `Bearer ${apiToken}`,
             },
@@ -63,7 +63,7 @@ export default function CareerPath() {
       <div className="w-full h-[425px] sm:h-[450px] p-6 font-ubuntu relative">
         {/* Background Image */}
         <Image
-          src={`https://dev-api.instient.ai${careerPathData.Image.url}`} // Dynamically set the full image URL from the API
+          src={`https://api.instient.ai${careerPathData.Image.url}`} // Dynamically set the full image URL from the API
           alt="Career Path Image"
           fill
           priority
