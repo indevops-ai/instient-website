@@ -1,0 +1,26 @@
+stages:
+  - deploy
+
+
+deploy_dev:
+  stage: deploy
+  image: linuxserver/openssh-server
+  script:
+    - chmod og= $ID_RSA
+    - ssh -p $SSH_PORT_DEV -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "./frontend-pull-deploy-script.sh"
+
+  only:
+    refs:
+      - dev
+
+deploy_prod:
+  stage: deploy
+  image: linuxserver/openssh-server
+  script:
+    - chmod og= $ID_RSA
+    - DEPLOY_FOLDER="/home/deploy/instient/client"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER_PROD@$SERVER_IP_PROD "cd $DEPLOY_FOLDER && ./frontend-pull-deploy-script.sh"
+
+  only:
+    refs:
+      - main
