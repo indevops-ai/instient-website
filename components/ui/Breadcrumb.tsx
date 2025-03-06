@@ -14,7 +14,8 @@ import GetInTouch from "./GetInTouch";
 
 const routeMap: Record<string, string> = {
   services: "Services",
-  casestudies: "Case Studies",
+  //casestudies: "Case Studies",
+  clients: "Clients",
   careers: "Careers",
   news: "News",
   aboutus: "About us",

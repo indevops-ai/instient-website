@@ -73,7 +73,7 @@ export default function CareerPath() {
 
         {/* Content */}
         <div className="my-64 sm:my-64 relative z-10">
-          <Card className="lg:w-[600px] sm:w-[650px] bg-gradient-to-b from-[#3c83c1] to-[#459ae5] text-white font-ubuntu opacity-95">
+          <Card className="lg:w-[600px] sm:w-[650px] bg-gradient-to-b from-[#3c83c1] to-[#459ae5] text-white font-ubuntu opacity-90">
             <CardContent>
               <p className="text-4xl py-24 sm:py-20 font-ubuntu font-medium">{careerPathData.Title}</p>
             </CardContent>

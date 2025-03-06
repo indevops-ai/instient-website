@@ -11,7 +11,8 @@ export function Footer() {
 
   const footerRoutes = [
     { name: "Services", href: "/services" },
-    { name: "Case Studies", href: "/casestudies" },
+    ///{ name: "Case Studies", href: "/casestudies" },
+    { name: "Clients", href: "/clients" },
     { name: "Careers", href: "/careers" },
     { name: "News", href: "/news" },
     { name: "About us", href: "/aboutus" },

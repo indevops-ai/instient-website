@@ -93,7 +93,7 @@ export default function Home() {
 
             {/* Content (Card remains in original position) */}
             <div className="flex my-64 sm:my-64">
-              <Card className="w-full sm:w-[650px] border-0 bg-gradient-to-b from-[#3c83c1] to-[#215E92] text-white shadow-lg">
+              <Card className="w-full sm:w-[650px] border-0 bg-gradient-to-b from-[#3c83c1] to-[#215E92] text-white shadow-lg opacity-90">
                 <CardHeader>
                   <CardTitle className="text-base font-light">
                     {homeData.Card_Header}

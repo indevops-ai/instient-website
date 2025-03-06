@@ -34,7 +34,7 @@ export default async function WhoWeArePage() {
       <div className="w-full h-[425px] sm:h-[450px] p-6 font-ubuntu relative">
         <Image src={`https://api.instient.ai${mainImageUrl}`} alt="Career Image" fill priority sizes="100vw" className="object-cover object-center -z-10" />
         <div className="my-64 sm:my-64">
-          <Card className="lg:w-[600px] sm:w-[650px] bg-gradient-to-b from-[#3c83c1] to-[#459ae5] text-white font-ubuntu">
+          <Card className="lg:w-[600px] sm:w-[650px] bg-gradient-to-b from-[#3c83c1] to-[#459ae5] text-white font-ubuntu  opacity-90">
             <CardHeader>
               <CardTitle className="text-base font-light"></CardTitle>
             </CardHeader>

@@ -101,7 +101,7 @@ export default function JobOpeningSlugPage({ params }: { params: Promise<{ slug:
         />
 
         <div className="my-64 sm:my-64 relative z-10">
-          <Card className="lg:w-[600px] sm:w-[650px] bg-gradient-to-b from-[#3c83c1] to-[#459ae5] text-white font-ubuntu">
+          <Card className="lg:w-[600px] sm:w-[650px] bg-gradient-to-b from-[#3c83c1] to-[#459ae5] text-white font-ubuntu opacity-90">
             <CardHeader>
               <CardTitle className="text-base font-light">
                 {location} | {type}

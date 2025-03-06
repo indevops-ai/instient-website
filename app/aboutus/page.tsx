@@ -11,7 +11,8 @@ import Image from "next/image";
 
 interface AboutData {
   Title: string;
-  Description: string;
+  Description1: string;
+  Description2: string;
   Content1_Card_Title: string;
   Content1_Card_Description: string;
   Content2_Card1_Number: string;
@@ -96,7 +97,7 @@ export default function About() {
 
         {/* Content */}
         <div className="my-64 sm:my-64 relative z-10">
-          <Card className="lg:w-[600px] sm:w-[650px] bg-gradient-to-b from-[#3c83c1] to-[#459ae5] text-white font-ubuntu opacity-95">
+          <Card className="lg:w-[600px] sm:w-[650px] bg-gradient-to-b from-[#3c83c1] to-[#459ae5] text-white font-ubuntu opacity-90">
             <CardContent>
               <p className="text-4xl py-24 sm:py-20 font-ubuntu font-medium">{aboutData.Title}</p>
             </CardContent>
@@ -105,7 +106,8 @@ export default function About() {
       </div>
 
     <div className="container sm:p-6 py-6 px-3 font-ubuntu mt-32 sm:mt-24 sm:w-[60%]">
-      <p className="text-2xl px-6 font-ubuntu">{aboutData.Description}</p>
+      <p className="text-2xl px-6 mb-5 font-ubuntu">{aboutData.Description1}</p>
+      <p className="text-2xl px-6 font-ubuntu">{aboutData.Description2}</p>
     </div>
 
     <div className="px-6 py-4 mt-8 sm:mt-10 mb-5">
