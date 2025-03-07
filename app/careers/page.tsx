@@ -6,6 +6,9 @@ import { Footer } from "@/components/ui/footer";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 
 interface CareerData {
   Title: string;
@@ -73,7 +76,7 @@ export default function Careers() {
         />
 
         <svg
-          className="absolute top-1/3 left-0 w-[80%] sm:w-[60%] h-auto -z-10 opacity-40"
+          className="absolute top-1/3 left-0 w-[68%] sm:w-[98%] h-auto -z-10 opacity-60"
           viewBox="0 0 800 200"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -81,7 +84,7 @@ export default function Careers() {
           <path
             d="M0 50 C150 100, 300 0, 450 50 S 700 150, 800 100"
             stroke="#3c83c1"
-            strokeWidth="3"
+            strokeWidth="2"
             fill="transparent"
           />
           <polygon
@@ -94,13 +97,26 @@ export default function Careers() {
         <div className="my-64 sm:my-64 relative z-10">
           <Card className="lg:w-[600px] sm:w-[650px] bg-gradient-to-b from-[#3c83c1] to-[#459ae5] text-white font-ubuntu opacity-90">
             <CardContent>
-              <p className="text-4xl py-24 sm:py-20 font-ubuntu font-medium">{careerData.Title}</p>
+              <p className="text-4xl pt-24 sm:pt-20 mb-10 font-ubuntu font-medium">{careerData.Title}</p>
+              <Link href="/careers/career-path">
+              <Button className="relative overflow-hidden bg-white text-black rounded-full  flex items-center mt-5 mb-10 px-6 py-6 text-lg font-medium w-full sm:w-[60%] justify-between group">
+                <span className="absolute inset-0 w-0 bg-blue-600 transition-all duration-300 ease-out group-hover:w-full origin-left"></span>
+                <span className="relative z-10 flex items-center group-hover:text-white">
+                  Explore Openings
+                </span>
+                <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-[#3c83c1] text-white rounded-full">
+                  <ArrowRight className="w-4 h-4" />
+                </span>
+              </Button>
+              </Link>
             </CardContent>
           </Card>
         </div>
+
+
       </div>
 
-      <div className="container sm:p-6 py-6 px-3 font-ubuntu mt-32 sm:mt-24 sm:w-[60%]">
+      <div className="container sm:p-6 py-6 px-3 font-ubuntu mt-48 sm:mt-32 sm:w-[60%]">
         <p className="text-2xl px-6 font-ubuntu">{careerData.Description}</p>
       </div>
 
@@ -108,26 +124,9 @@ export default function Careers() {
       <div className="sm:px-6 px-3 py-4 mt-10 sm:mt-10 sm:mb-16 mb-10 ">
         <h2 className="text-3xl font-ubuntu  sm:text-left px-6  sm:mb-16">{careerData.Content_Title}</h2>
 
-        <svg
-          className="absolute mt-40 left-0 w-[80%] sm:w-[60%] h-auto -z-10 opacity-40"
-          viewBox="0 0 800 200"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M0 50 C150 100, 300 0, 450 50 S 700 150, 800 100"
-            stroke="#3c83c1"
-            strokeWidth="3"
-            fill="transparent"
-          />
-          <polygon
-            points="780,95 800,100 780,105"
-            fill="#3c83c1"
-          />
-        </svg>
 
         <svg
-          className="absolute mt-96 right-0 w-[80%] sm:w-[60%] h-auto -z-10 opacity-40"
+          className="absolute mt-96  right-0 w-[80%] sm:w-[98%] h-auto z-5 opacity-40"
           viewBox="0 0 800 200"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -136,7 +135,7 @@ export default function Careers() {
           <path
             d="M0 50 C150 100, 300 0, 450 50 S 700 150, 800 100"
             stroke="#3c83c1"
-            strokeWidth="3"
+            strokeWidth="2"
             fill="transparent"
           />
           <polygon
@@ -144,9 +143,9 @@ export default function Careers() {
             fill="#3c83c1"
           />
         </svg>
-
-
         <CareerSection/>
+
+        
 
       </div>
 

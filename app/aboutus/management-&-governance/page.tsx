@@ -42,6 +42,8 @@ export default async function ManagementAndGovernancePage() {
     governanceModel,
     managementModel,
     Image: { url } = {},
+    Banner_Image1: { url: bannerImageUrl1 } = {},
+    Banner_Image2: { url: bannerImageUrl2 } = {},
   } = managementAndGovernanceData;
 
   return (
@@ -55,6 +57,27 @@ export default async function ManagementAndGovernancePage() {
               sizes="100vw"
               className="object-cover object-center -z-10"
           />
+
+        <svg
+          className="absolute top-1/3 left-0 w-[68%] sm:w-[98%] h-auto -z-10 opacity-60"
+          viewBox="0 0 800 200"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0 50 C150 100, 300 0, 450 50 S 700 150, 800 100"
+            stroke="#3c83c1"
+            strokeWidth="1"
+            fill="transparent"
+          />
+          <polygon
+            points="780,95 800,100 780,105"
+            fill="#3c83c1"
+          />
+        </svg>
+
+
+
         
         <div className="my-64 sm:my-64 ">
           <Card className="lg:w-[600px] sm:w-[650px] bg-gradient-to-b from-[#3c83c1] to-[#459ae5] text-white font-ubuntu  opacity-90">
@@ -62,7 +85,7 @@ export default async function ManagementAndGovernancePage() {
               <CardTitle className="text-base font-light"></CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-4xl py-6 sm:py-0 mb-12 sm:mb-24 font-ubuntu font-medium">
+              <p className="text-4xl py-6 sm:pt-7 mb-12 sm:mb-12 font-ubuntu font-medium">
                 {Title}
               </p>
             </CardContent>
@@ -70,31 +93,33 @@ export default async function ManagementAndGovernancePage() {
         </div>
       </div>
 
-      <Section contentTitle="Management" contentAnswer={managementModel}customMarginTop="mt-32 sm:mt-20"  />
-      <Section contentTitle="Governance" contentAnswer={governanceModel} customMarginTop="sm:mt-10" />
+            <section className="bg-gray-600 text-white mb-10 mt-32 sm:mt-20">
+              <div className="container font-ubuntu mx-auto flex flex-col md:flex-row items-center">
+                <div className="md:w-1/2 px-6 mt-5">
+                  <h2 className="text-4xl px-6 font-bold  mb-8">Management</h2>
+                  <p className="text-lg px-6 text-white mb-20">{managementModel}</p>
+                </div>
+                <div className="md:w-1/2 flex justify-end">
+                  {bannerImageUrl1 && <Image src={`https://api.instient.ai${bannerImageUrl1}`} alt="Guiding Values" width={700} height={400} className="shadow-lg" />}
+                </div>
+              </div>
+            </section>
+
+            <section className="bg-gray-600 text-white mb-10 mt-32 sm:mt-20">
+              <div className="container font-ubuntu mx-auto flex flex-col md:flex-row items-center">
+              <div className="md:w-1/2 flex justify-start">
+                  {bannerImageUrl2 && <Image src={`https://api.instient.ai${bannerImageUrl2}`} alt="Guiding Values" width={700} height={400} className="shadow-lg" />}
+              </div>
+              <div className="md:w-1/2 px-6 mt-5 items-center">
+                  <h2 className="text-4xl px-6 font-bold  mb-8 mt-5">Governance</h2>
+                  <p className="text-lg px-6 text-white mb-10">{governanceModel}</p>
+              </div>
+                
+              </div>
+            </section>
+
 
       <Footer />
     </main>
-  );
-}
-
-function Section({
-  contentTitle,
-  contentAnswer,
-  customMarginTop,
-}: {
-  contentTitle: string;
-  contentAnswer: string;
-  customMarginTop?: string;
-}) {
-  return (
-    <div className={`sm:px-6 px-3 py-4 ${customMarginTop} sm:mb-10 mb-10`}>
-      <h2 className="text-3xl font-medium font-ubuntu sm:text-left px-6">
-        {contentTitle}
-      </h2>
-      <div className="container sm:p-6 py-6 px-3 font-ubuntu sm:mt-2 w-[90%] sm:w-[60%]">
-        <p className="text-xl px-3 sm:p-0 font-ubuntu">{contentAnswer}</p>
-      </div>
-    </div>
   );
 }

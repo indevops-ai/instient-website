@@ -55,6 +55,25 @@ export default async function TechnologyPartnerPage() {
           sizes="100vw"
           className="object-cover object-center -z-10"
         />
+
+
+        <svg
+          className="absolute top-1/3 left-0 w-[68%] sm:w-[98%] h-auto -z-10 opacity-60"
+          viewBox="0 0 800 200"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0 50 C150 100, 300 0, 450 50 S 700 150, 800 100"
+            stroke="#3c83c1"
+            strokeWidth="2"
+            fill="transparent"
+          />
+          <polygon
+            points="780,95 800,100 780,105"
+            fill="#3c83c1"
+          />
+        </svg>
         
         <div className="my-64 sm:my-64">
           <Card className="lg:w-[600px] sm:w-[650px] bg-gradient-to-b from-[#3c83c1] to-[#459ae5] text-white font-ubuntu  opacity-90">
@@ -62,7 +81,7 @@ export default async function TechnologyPartnerPage() {
               <CardTitle className="text-base font-light"></CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-4xl py-6 sm:py-0 mb-12 sm:mb-24 font-ubuntu font-medium">
+              <p className="text-4xl py-6 sm:pt-7 mb-12 sm:mb-12 font-ubuntu font-medium">
                 {Title}
               </p>
             </CardContent>

@@ -100,6 +100,7 @@ export default function MeetOurPeopleSlugPage({ params }: { params: Promise< { s
             priority
           />
         </div>
+        
 
         {/* Profile Details */}
         <div className="text-white text-center sm:text-left mt-5 sm:mt-12 max-w-lg lg:ml-16 z-20 px-4 sm:px-0">

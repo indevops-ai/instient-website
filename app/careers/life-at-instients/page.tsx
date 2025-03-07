@@ -50,13 +50,15 @@ export default async function LifeAtInstientPage() {
             className="object-cover object-center -z-10"
           />
         )}
+
+        
         <div className="my-64 sm:my-64">
           <Card className="lg:w-[600px] sm:w-[650px] bg-gradient-to-b from-[#3c83c1] to-[#459ae5] text-white font-ubuntu opacity-90">
             <CardHeader>
               <CardTitle className="text-base font-light">{header}</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-4xl py-6 sm:py-0 mb-12 sm:mb-24 font-ubuntu font-medium">{Title}</p>
+              <p className="text-4xl py-6 sm:pt-7 mb-12 sm:mb-12 font-ubuntu font-medium">{Title}</p>
             </CardContent>
           </Card>
         </div>

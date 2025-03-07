@@ -6,7 +6,7 @@ import { ChevronDown } from "lucide-react";
 import CareerPathBreadcrumb from "./CareerPathBreadcrumb"; // Importing CareerPathBreadcrumb
 
 const careersPages = [
-  { name: "Career Path", href: "/careers/career-path", hasDropdown: false }, // Now a parent page
+  { name: "Career Paths", href: "/careers/career-path", hasDropdown: false }, // Now a parent page
   { name: "Life at Instient", href: "/careers/life-at-instients" },
   { name: "Why Join Instient", href: "/careers/why-join-instients"},
   { name: "Meet our people", href: "/careers/meet-our-people"},

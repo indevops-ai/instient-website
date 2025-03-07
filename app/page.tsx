@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -10,10 +10,11 @@ import {
 } from "@/components/ui/card";
 import { Footer } from "@/components/ui/footer";
 import { useEffect, useState } from "react";
-import { ArrowRight } from "lucide-react";
+// import { ArrowRight } from "lucide-react";
 import { usePathname } from "next/navigation";
-import Link from "next/link";
-import Image from "next/image";
+// import Link from "next/link";
+import HomeSlider from "@/components/ui/HomeSlider";
+//import Image from "next/image";
 
 interface HomeData {
   Card_Header: string;
@@ -103,20 +104,29 @@ export default function Home() {
                   <p className="text-4xl py-3 font-semibold">{homeData.Card_Title}</p>
                   <p className="text-xl font-thin">{homeData.Card_Content}</p>
                 </CardContent>
-                <CardFooter className="flex justify-end">
-                  <Link href={`/news/${homeData.Card_link}`}>
+                <CardFooter className="flex justify-end mb-5">
+                  {/* <Link href={`/news/${homeData.Card_link}`}>
                     <Button className="bg-transparent rounded-full border-[1.5px] flex items-center p-5 gap-2">
                       {homeData.Card_Button} <ArrowRight className="w-4 h-4" />
                     </Button>
-                  </Link>
+                  </Link> */}
                 </CardFooter>
               </Card>
             </div>
         </div>
 
+        <div className="py-4 mt-32 sm:mt-10 mb-10">
+          <h2 className="px-10 sm:px-10 font-ubuntu sm:text-left text-left text-3xl sm:mt-10 mb-10">
+            Latest Insights
+          </h2>
+          <HomeSlider/>
+        </div>
+
+        
 
 
-        <div className="px-6 py-4 mt-44 sm:mt-10 mb-10">
+        {/* News section */}
+        {/* <div className="px-6 py-4 mt-44 sm:mt-10 mb-10">
           <h2 className="px-2 sm:px-10 font-ubuntu text-3xl">
             {homeData.Content_Header}
           </h2>
@@ -173,7 +183,7 @@ export default function Home() {
 
             </Link>
           </div>
-        </div>
+        </div> */}
       </main>
       <Footer />
     </>

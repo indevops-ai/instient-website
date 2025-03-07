@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { ChevronRight, ChevronLeft, ArrowRight } from "lucide-react";
 import ServicesBreadcrumb from "./ServicesBreadcrumb";
 import CaseStudiesBreadcrumb from "./CaseStudiesBreadcrumb";
-import NewsBreadcrumb from "./NewsBreadcrumb";
+//import NewsBreadcrumb from "./NewsBreadcrumb";
 import AboutUsBreadcrumb from "./AboutUsBreadcrumb";
 import CareersBreadcrumb from "./CareersBreadcrumb";
 import CareerPathBreadcrumb from "./CareerPathBreadcrumb";
@@ -17,7 +17,7 @@ const routeMap: Record<string, string> = {
   //casestudies: "Case Studies",
   clients: "Clients",
   careers: "Careers",
-  news: "News",
+  //news: "News",
   aboutus: "About us",
   contactus: "Contact us",
 };
@@ -63,7 +63,7 @@ export default function Breadcrumb() {
                 </Link>
                 {segment === "services" && <ServicesBreadcrumb />}
                 {segment === "casestudies" && <CaseStudiesBreadcrumb />}
-                {segment === "news" && <NewsBreadcrumb />}
+                {/* {segment === "news" && <NewsBreadcrumb />} */}
                 {segment === "aboutus" && <AboutUsBreadcrumb />}
                 {segment === "careers" && <CareersBreadcrumb />}
                 {segment === "career-path" && <CareerPathBreadcrumb />}
@@ -109,6 +109,9 @@ function formatBreadcrumbText(segment: string): string {
   const exceptions: Record<string, string> = {
     "job-openings": "Experienced",
     internships: "Early Program",
+    "career-path": "Career Paths",
+    "why-join-instients": "Why Join Instient",
+    "life-at-instients": "Life at Instient",
   };
 
   return (

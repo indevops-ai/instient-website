@@ -43,7 +43,7 @@ export default function ClientPartners() {
           const fullImageUrl = imageUrl ? `https://api.instient.ai${imageUrl}` : '/placeholder.jpg';
 
           return (
-            <div key={index} className="flex justify-center items-center bg-gradient-to-b from-[#62b6ff98] to-[#9db5ca] shadow-md rounded-lg border border-gray-200 p-4">
+            <div key={index} className="flex justify-center items-center bg-gray-600 shadow-md rounded-lg border border-gray-200 p-4">
               <Image
                 src={fullImageUrl}
                 alt={`Client Logo ${index + 1}`}

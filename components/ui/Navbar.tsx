@@ -15,7 +15,7 @@ const routes = [
   //{ name: "Case Studies", href: "/casestudies" },
   { name: "Clients", href: "/clients" },
   { name: "Careers", href: "/careers" },
-  { name: "News", href: "/news" },
+  //{ name: "News", href: "/news" },
   { name: "About us", href: "/aboutus" },
 ];
 

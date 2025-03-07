@@ -25,7 +25,7 @@ async function fetchClientsPageData() {
 export default async function ClientsPage() {
   const clientsData = await fetchClientsPageData();
 
-  if (!clientsData || !clientsData.Title || !clientsData.Description) {
+  if (!clientsData || !clientsData.Title) {
     return (
       <p className="text-center mt-20">
         Some required fields are missing or the page does not exist.
@@ -35,7 +35,8 @@ export default async function ClientsPage() {
 
   const {
     Title,
-    Description,
+    Description1,
+    Description2,
     Image: { url } = {},
   } = clientsData;
 
@@ -50,6 +51,25 @@ export default async function ClientsPage() {
           sizes="100vw"
           className="object-cover object-center -z-10"
         />
+
+        <svg
+          className="absolute top-1/3 left-0 w-[68%] sm:w-[98%] h-auto -z-10 opacity-60"
+          viewBox="0 0 800 200"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0 50 C150 100, 300 0, 450 50 S 700 150, 800 100"
+            stroke="#3c83c1"
+            strokeWidth="2"
+            fill="transparent"
+          />
+          <polygon
+            points="780,95 800,100 780,105"
+            fill="#3c83c1"
+          />
+        </svg>
+
         
         <div className="my-64 sm:my-64">
           <Card className="lg:w-[600px] sm:w-[650px] bg-gradient-to-b from-[#3c83c1] to-[#459ae5] text-white font-ubuntu opacity-90">
@@ -66,7 +86,8 @@ export default async function ClientsPage() {
       </div>
 
       <div className="container sm:p-6 py-6 px-3 font-ubuntu mt-24 sm:mt-24 w-[90%] sm:w-[60%]">
-        <p className="text-2xl px-6 font-ubuntu">{Description}</p>
+        <p className="text-2xl px-6 font-ubuntu mb-5">{Description1}</p>
+        <p className="text-2xl px-6 font-ubuntu">{Description2}</p>
       </div>
 
       < ClientParteners/>
