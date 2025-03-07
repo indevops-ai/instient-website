@@ -98,7 +98,7 @@ export default function Careers() {
           <Card className="lg:w-[600px] sm:w-[650px] bg-gradient-to-b from-[#3c83c1] to-[#459ae5] text-white font-ubuntu opacity-90">
             <CardContent>
               <p className="text-4xl pt-24 sm:pt-20 mb-10 font-ubuntu font-medium">{careerData.Title}</p>
-              <Link href="/careers/career-path">
+              <Link href="https://careers.instient.ai/jobs/Careers">
               <Button className="relative overflow-hidden bg-white text-black rounded-full  flex items-center mt-5 mb-10 px-6 py-6 text-lg font-medium w-full sm:w-[60%] justify-between group">
                 <span className="absolute inset-0 w-0 bg-blue-600 transition-all duration-300 ease-out group-hover:w-full origin-left"></span>
                 <span className="relative z-10 flex items-center group-hover:text-white">

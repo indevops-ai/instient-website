@@ -115,8 +115,8 @@ export default function Home() {
             </div>
         </div>
 
-        <div className="py-4 mt-32 sm:mt-10 mb-10">
-          <h2 className="px-10 sm:px-10 font-ubuntu sm:text-left text-left text-3xl sm:mt-10 mb-10">
+        <div className="py-4 mt-44 sm:mt-10 mb-10">
+          <h2 className="px-10 sm:px-10 font-ubuntu sm:text-left text-left text-3xl mt-10 mb-10">
             Latest Insights
           </h2>
           <HomeSlider/>

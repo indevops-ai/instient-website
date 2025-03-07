@@ -5,8 +5,8 @@ import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 
 const careerPathPages = [
-  { name: "Early Program", href: "/careers/career-path/internships" },
-  { name: "Experienced", href: "/careers/career-path/job-openings" },
+  { name: "Early Program", href: "https://careers.instient.ai/jobs/Careers" },
+  { name: "Experienced", href: "https://careers.instient.ai/jobs/Careers" },
 ];
 
 export default function CareerPathBreadcrumb() {
