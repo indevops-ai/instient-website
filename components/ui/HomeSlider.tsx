@@ -60,36 +60,41 @@ export default function HomeSlider() {
       >
         {banners.map((banner, index) => (
           <SwiperSlide key={index} className="flex">
-            <div className="container mx-auto flex flex-col md:flex-row items-center md:h-[400px]">
-              <div className="md:w-1/2 mx-14 px-8 sm:px-10  my-5 sm:my-0">
-                <h2 className="text-4xl font-bold mb-6 mt-4 sm:mt-0">{banner.banner_title || 'Welcome to Our Platform'}</h2>
-                <p className="text-lg mb-8">{banner.banner_description || 'Discover amazing features and services.'}</p>
-                <Link href={`/${banner.slug}`}>
-                  <Button className="relative text-white border-white ml-5 border-[1.5px] rounded-full flex items-center font-ubuntu gap-2 overflow-hidden transition-all duration-300 ease-out group">
-                    <span className="absolute inset-0 w-0 bg-gray-400 transition-all duration-300 ease-out group-hover:w-full"></span>
-                    <span className="relative z-10 flex items-center gap-2 hover:text-white hover:border-gray-300">
-                      {banner.banner_button_text || 'Explore Now'} <ArrowRight className="w-4 h-4" />
-                    </span>
-                  </Button>
-                </Link>
-              </div>
-              <div className="md:w-1/2 flex justify-end h-[300px] md:h-[400px] mt-4 md:mt-0">
-                {banner.banner_image?.url ? (
-                  <Image
-                    src={`https://api.instient.ai${banner.banner_image.url}`}
-                    alt={banner.banner_title || 'Home Banner'}
-                    width={700}
-                    height={300}
-                    className="shadow-lg object-cover h-full w-full"
-                  />
-                ) : (
-                  <div className="w-[700px] h-[300px] bg-gray-800 flex items-center justify-center text-white">
-                    No Image Available
-                  </div>
-                )}
-              </div>
+          <div className="container mx-auto flex flex-col md:flex-row items-center md:h-[400px]">
+            <div className="md:w-1/2 mx-4 sm:mx-14 px-8 sm:px-10 my-5 sm:my-0">
+              <h2 className="text-4xl font-bold mb-6 mt-4 sm:mt-0">
+                {banner.banner_title || "Welcome to Our Platform"}
+              </h2>
+              <p className="text-lg mb-8">
+                {banner.banner_description || "Discover amazing features and services."}
+              </p>
+              <Link href={`/${banner.slug}`}>
+                <Button className="relative text-white border-white ml-5 border-[1.5px] rounded-full flex items-center font-ubuntu gap-2 overflow-hidden transition-all duration-300 ease-out group">
+                  <span className="absolute inset-0 w-0 bg-gray-400 transition-all duration-300 ease-out group-hover:w-full"></span>
+                  <span className="relative z-10 flex items-center gap-2 hover:text-white hover:border-gray-300">
+                    {banner.banner_button_text || "Explore Now"} <ArrowRight className="w-4 h-4" />
+                  </span>
+                </Button>
+              </Link>
             </div>
-          </SwiperSlide>
+            <div className="md:w-1/2 flex justify-end min-h-[300px] md:h-[400px] w-full">
+              {banner.banner_image?.url ? (
+                <Image
+                  src={`https://api.instient.ai${banner.banner_image.url}`}
+                  alt={banner.banner_title || "Home Banner"}
+                  width={700}
+                  height={400}
+                  className="shadow-lg object-cover w-full h-full"
+                />
+              ) : (
+                <div className="w-[700px] h-[300px] bg-gray-800 flex items-center justify-center text-white">
+                  No Image Available
+                </div>
+              )}
+            </div>
+          </div>
+        </SwiperSlide>
+        
         ))}
       </Swiper>
 
