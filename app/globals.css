@@ -122,3 +122,19 @@ body {
   font-weight: 700;
   font-style: italic;
 }
+
+/* ======================== */
+/* Zoho Chat Widget Styles  */
+/* ======================== */
+
+/* Adjust the chat widget position */
+#zsiqwidget {
+  bottom: 80px !important; /* Moves it up */
+  right: 20px !important;  /* Adjust this for horizontal position */
+}
+
+/* Optional: Allow dragging */
+#zsiqwidget {
+  position: fixed !important;
+  cursor: grab;
+}
