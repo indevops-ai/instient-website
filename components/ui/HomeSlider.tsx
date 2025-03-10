@@ -69,7 +69,7 @@ export default function HomeSlider() {
                 {banner.banner_description || "Discover amazing features and services."}
               </p>
               <Link href={`/${banner.slug}`}>
-                <Button className="relative text-white border-white ml-5 border-[1.5px] rounded-full flex items-center font-ubuntu gap-2 overflow-hidden transition-all duration-300 ease-out group">
+                <Button className="relative text-white border-white border-[1.5px] rounded-full flex items-center font-ubuntu gap-2 overflow-hidden transition-all duration-300 ease-out group">
                   <span className="absolute inset-0 w-0 bg-gray-400 transition-all duration-300 ease-out group-hover:w-full"></span>
                   <span className="relative z-10 flex items-center gap-2 hover:text-white hover:border-gray-300">
                     {banner.banner_button_text || "Explore Now"} <ArrowRight className="w-4 h-4" />

@@ -14,6 +14,7 @@ export function Footer() {
     //{ name: "Case Studies", href: "/casestudies" },
     { name: "Clients", href: "/clients" },
     { name: "Careers", href: "/careers" },
+    { name: "Support", href: "https://support.instient.ai/portal/en/home" },
     // { name: "News", href: "/news" },
     { name: "About us", href: "/aboutus" },
     { name: "Contact us", href: "/contactus" },
