@@ -90,7 +90,7 @@ export function Footer() {
                 {hoveredIcon}
               </div>
             )}
-            <div className="flex space-x-4 mt-2 lg:mt-0">
+            <div className="flex space-x-4 mt-2 lg:mt-0 mr-0 sm:mr-14">
               {socialLinks.map(({ name, icon: Icon, href, isImage }) => (
                 <Link key={name} href={href} target="_blank" aria-label={name}>
                   <div
