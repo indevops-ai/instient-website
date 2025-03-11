@@ -1,6 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Footer } from "@/components/ui/footer";
 import Image from "next/image";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Values and Ethics - Instient",
+  description: "Learn more about Instient core values, ethical principles, and commitment to excellence.",
+}
 
 async function fetchEthicsAndValuesPageData() {
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;

@@ -2,6 +2,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Footer } from "@/components/ui/footer";
 import Image from 'next/image';
 import ClientParteners from '@/components/ui/ClientPartners'
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Clients - Instient",
+  description: "Stay updated with the latest clients from Instient.",
+};
 
 
 async function fetchClientsPageData() {

@@ -1,6 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Footer } from "@/components/ui/footer";
 import Image from 'next/image'; // Importing Image
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Terms of use - Instient",
+  description: "Learn more about the terms of use at Instient.",
+};
 
 async function fetchTermsOfUsePageData() {
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;

@@ -4,6 +4,12 @@ import { Footer } from "@/components/ui/footer";
 import { ArrowRight } from "lucide-react";
 import Image from 'next/image';
 import Link from 'next/link';
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Who we are - Instient",
+  description: "Get to know Instient—our mission, values, and the people driving innovation and excellence.",
+};
 
 async function fetchWhoWeArePageData() {
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;

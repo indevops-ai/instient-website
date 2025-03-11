@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Footer } from "@/components/ui/footer";
 import Image from 'next/image'; // Importing Image
+import { Metadata } from "next";
 
 async function fetchServiceData(slug: string) {
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
@@ -17,6 +18,25 @@ async function fetchServiceData(slug: string) {
 
   const data = await response.json();
   return data?.data?.[0] ?? null;
+}
+
+export async function generateMetadata({params,}: {
+params: Promise< { slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const serviceData = await fetchServiceData(slug);
+
+  if (!serviceData) {
+    return {
+      title: "Service Not Found - Instient",
+      description: "The requested service does not exist.",
+    };
+  }
+
+  return {
+    title: `${serviceData.Service_Title} - Instient`,
+    description: serviceData.Service_Description || "Learn more about this service.",
+  };
 }
 
 export default async function ServiceSlugPage({ params }: { params: Promise<{ slug: string }> }) {

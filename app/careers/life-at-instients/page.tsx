@@ -1,6 +1,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Footer } from "@/components/ui/footer";
 import Image from "next/image";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "life at Instient",
+  description: "Stay updated with the latest life at instient from Instient.",
+};
+
 
 async function fetchLifeAtInstientPageData() {
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;

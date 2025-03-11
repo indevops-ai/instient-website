@@ -1,6 +1,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Footer } from "@/components/ui/footer";
 import Image from 'next/image'; // Importing Image
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Cookie Settings - Instient",
+  description: "Stay updated with the latest cookie settings from Instient.",
+};
+
 
 async function fetchCookieSettingsPageData() {
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;

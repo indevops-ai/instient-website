@@ -1,6 +1,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Footer } from "@/components/ui/footer";
 import Image from "next/image";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Why join Instient",
+  description: "Discover the benefits of being part of Instient. Explore growth opportunities, innovation, and a dynamic work culture.",
+};
+
 
 async function fetchWhyJoinPageData() {
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;

@@ -1,6 +1,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Footer } from "@/components/ui/footer";
 import Image from 'next/image'; // Importing Image
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Management and Governance - Instient",
+  description: "Learn more about Instient management and governance model.",
+};
+
 
 async function fetchManagementAndGovernancePageData() {
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;

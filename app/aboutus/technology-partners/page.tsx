@@ -3,6 +3,13 @@ import { Footer } from "@/components/ui/footer";
 import Image from 'next/image'; // Importing Image
 import TechnologyPartnerSlider from "@/components/ui/TechnologyPartnerSlider";
 import PartnersCard from "@/components/ui/PartnersCard";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Technology Partners - Instient",
+  description: "Learn more about Instients technology partners.",
+};
+
 async function fetchTechnologyPartnerPageData() {
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
 

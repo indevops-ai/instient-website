@@ -10,6 +10,8 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import GetInTouch from "@/components/ui/GetInTouch";
 
+
+
 interface ContactData {
   Title: string;
   Description_mobile: string;

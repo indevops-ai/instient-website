@@ -46,9 +46,9 @@ export default function CareerPathBreadcrumb() {
           onMouseLeave={() => setIsOpen(false)} // Close when leaving dropdown
           ref={dropdownRef}
         >
-          {careerPathPages.map((page) => (
+          {careerPathPages.map((page, index) => (
             <Link
-              key={page.href}
+              key={`${page.href}-${index}`} // Ensures uniqueness
               href={page.href}
               className="block px-4 py-2 text-sm text-black hover:bg-gray-200"
             >
