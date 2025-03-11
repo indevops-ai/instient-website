@@ -193,7 +193,7 @@ export default function About() {
                 <p className="text-2xl py-3 font-ubuntu font-extralight">{aboutData.Content3_Card1}</p>
               </CardContent>
               <CardFooter className="flex justify-end py-6">
-                <Link href="/aboutus/management-&-governance">
+                <Link href="/aboutus/management-and-governance">
                 <Button className="text-black border-black rounded-full flex items-center font-ubuntu gap-2 
                   hover:bg-gray-200  hover:border-gray-300 transition-all duration-300 ease-in-out transform hover:scale-105">
                   <ArrowRight className="w-4 h-4" />

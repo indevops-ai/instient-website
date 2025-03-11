@@ -1,0 +1,7 @@
+# Welcome, Robots, to Instient!
+
+Sitemap: https://www.instient.ai/sitemap/instient_sitemap.xml
+
+User-agent: *
+Disallow: https://api.instient.ai/
+

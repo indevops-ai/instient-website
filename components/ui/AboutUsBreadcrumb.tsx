@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 
 const aboutUsPages = [
-  { name: "Management & Governance", href: "/aboutus/management-&-governance" },
+  { name: "Management & Governance", href: "/aboutus/management-and-governance" },
   { name: "Technology Partners", href: "/aboutus/technology-partners" },
   { name: "Who We Are", href: "/aboutus/who-we-are" },
 ];

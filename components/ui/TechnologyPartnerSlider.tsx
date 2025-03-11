@@ -2,9 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
@@ -15,7 +12,7 @@ import 'swiper/css/pagination';
 interface Banner {
   banner_title?: string;
   banner_description?: string;
-  banner_button_text?: string;
+  // banner_button_text?: string;
   banner_image?: {
     url: string;
   };
@@ -63,14 +60,14 @@ export default function TechnologyPartnerSlider() {
               <div className="md:w-1/2 mx-14 px-10">
                 <h2 className="text-4xl font-bold mb-6">{banner.banner_title || 'Technology Event'}</h2>
                 <p className="text-lg mb-8">{banner.banner_description || 'Join us for an exclusive event.'}</p>
-                <Link href="/">
+                {/* <Link href="/">
                   <Button className="relative text-white border-white ml-5 border-[1.5px] rounded-full flex items-center font-ubuntu gap-2 overflow-hidden transition-all duration-300 ease-out group">
                     <span className="absolute inset-0 w-0 bg-gray-400 transition-all duration-300 ease-out group-hover:w-full"></span>
                     <span className="relative z-10 flex items-center gap-2 hover:text-white hover:border-gray-300">
                       {banner.banner_button_text || 'Learn More'} <ArrowRight className="w-4 h-4" />
                     </span>
                   </Button>
-                </Link>
+                </Link> */}
               </div>
               <div className="md:w-1/2 flex justify-end h-[300px] md:h-[400px] mt-4 md:mt-0">
                 {banner.banner_image?.url ? (
