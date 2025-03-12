@@ -10,7 +10,7 @@ import AboutUsBreadcrumb from "./AboutUsBreadcrumb";
 import CareersBreadcrumb from "./CareersBreadcrumb";
 import CareerPathBreadcrumb from "./CareerPathBreadcrumb";
 import { useState } from "react";
-import GetInTouch from "./GetInTouch";
+import ZohoFormDialog from "./ZohoFormDialog";
 
 const routeMap: Record<string, string> = {
   services: "Services",
@@ -85,12 +85,8 @@ export default function Breadcrumb() {
         </div>
 
         {/* Get in Touch Button */}
-        <Link
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            openDialog();
-          }}
+        <button
+          onClick={openDialog}
           aria-label="Open contact dialog"
           className="bg-gray-300 text-black px-4 py-2 w-full sm:w-auto rounded-md flex items-center justify-center text-sm font-medium shadow-md hover:shadow-lg transition-all duration-300 ease-out overflow-hidden relative group"
         >
@@ -98,9 +94,9 @@ export default function Breadcrumb() {
           <span className="relative hover:text-white z-10 flex items-center">
             Get in Touch <ArrowRight className="w-4 h-4 ml-2" />
           </span>
-        </Link>
+        </button>
       </nav>
-      <GetInTouch isOpen={isDialogOpen} onClose={closeDialog} />
+      <ZohoFormDialog open={isDialogOpen} onClose={closeDialog} />
     </>
   );
 }

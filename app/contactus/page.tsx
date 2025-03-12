@@ -8,9 +8,7 @@ import { ArrowRight } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import GetInTouch from "@/components/ui/GetInTouch";
-
-
+import ZohoFormDialog from "@/components/ui/ZohoFormDialog";
 
 interface ContactData {
   Title: string;
@@ -55,7 +53,6 @@ export default function Contact() {
 
   if (!contactData) {
     return (
-      // Loading spinner
       <div className="flex justify-center items-center w-full h-screen">
         <div className="flex flex-row gap-2">
           <div className="w-4 h-4 rounded-full bg-blue-700 animate-bounce"></div>
@@ -69,9 +66,8 @@ export default function Contact() {
   return (
     <main>
       <div className="w-full h-[425px] sm:h-[450px] p-6 font-ubuntu relative">
-        {/* Background Image */}
         <Image 
-         src={`https://api.instient.ai${contactData.Image.url}`} // Dynamically set the full image URL from the API
+         src={`https://api.instient.ai${contactData.Image.url}`} 
          alt="Career Image"
          fill
          priority
@@ -79,7 +75,6 @@ export default function Contact() {
          className="-z-10 object-cover"
         />
 
-        {/* Content */}
         <div className="my-64 sm:my-64">
           <Card className="lg:w-[600px] sm:w-[650px] bg-gradient-to-b from-[#3c83c1] to-[#459ae5] text-white font-ubuntu opacity-90">
             <CardContent>
@@ -102,7 +97,6 @@ export default function Contact() {
         <p className="text-3xl font-ubuntu font-semibold mb-1">{contactData.Bottom_Title}</p>
         <p className="text-lg font-ubuntu">{contactData.Bottom_Description}</p>
         
-        {/* Button positioned for desktop and moved below in mobile */}
         <Button
           size="lg"
           className="absolute top-1/2 right-6 transform -translate-y-1/2 rounded-full text-black font-ubuntu bg-white hidden sm:inline-flex 
@@ -126,10 +120,9 @@ export default function Contact() {
             {contactData.Bottom_Button} <ArrowRight className="w-4 h-4" />
           </span>
         </Button>
-
       </div>
 
-      <GetInTouch isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
+      <ZohoFormDialog open={isModalOpen} onClose={() => setModalOpen(false)} />
       <Footer/>
     </main>
   );
