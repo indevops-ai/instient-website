@@ -32,18 +32,18 @@ const ZohoFormDialog: React.FC<ZohoFormDialogProps> = ({ open, onClose }) => {
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="w-full sm:w-[90%] md:w-[80%] lg:w-[60%] max-w-lg py-5 px-4 font-ubuntu flex justify-center max-h-[90vh] overflow-y-auto">
+      <DialogContent className="w-full sm:w-[90%] md:w-[80%] lg:w-[60%] max-w-xl py-5 px-4 font-ubuntu flex justify-center max-h-[90vh] overflow-y-auto">
         <div className="w-full space-y-3">
           <DialogHeader className="flex-row items-center justify-between space-x-4 px-3 mt-4">
             <DialogTitle className="text-lg font-medium">Get in touch</DialogTitle>
             <Image src="/Instient Logo.svg" alt="Logo" width={100} height={100} priority />
           </DialogHeader>
-          <div className="px-3">
+          <div className="px-1">
             <iframe
-              src="https://crm.zoho.in/crm/WebFormServeServlet?rid=871868abb1d05be9836458934631c6505cd160ef77d75fbd250c849897b2a3c68176c605640b0f008b563f54a198f4f9gidabdaab1fb71d6a7e473128d0c26e0737784ceb5aaf420932fe188fd0dfcbc727"
-              width="100%"
-              height="730px"
-              className="border-none rounded-lg"
+              width="100%" 
+              height="630px"
+              src="https://crm.zoho.in/crm/WebFormServeServlet?rid=9c353386eb728e69aa1ae3b9246bac1d5f3d394a8f2a9fb9a67798241975a2dde98bd68a08ccbc5bf2c45b263a51de62gide0b7d24839ef89da96262e44be76b891c78747f8f257187510eaba60b76eacec"
+              className="border-none rounded-lg sm:w-[90%] md:w-[80%] lg:w-[70%] xl:w-[610px]"
               title="Zoho Form"
             />
           </div>
