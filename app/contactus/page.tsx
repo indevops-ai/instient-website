@@ -97,27 +97,32 @@ export default function Contact() {
       <div className="w-full px-6 py-6 mt-10 sm:mt-10 bg-[#0070ad] text-white font-ubuntu mb-6 relative">
         <p className="text-3xl font-ubuntu font-semibold mb-1">{contactData.Bottom_Title}</p>
         <p className="text-lg font-ubuntu">{contactData.Bottom_Description}</p>
-        
+
+        {/* Large Screen Button */}
         <Button
           size="lg"
-          className="absolute top-1/2 right-6 transform -translate-y-1/2 rounded-full text-black font-ubuntu bg-white hidden sm:inline-flex 
-                    transition-all duration-300 ease-out overflow-hidden group"
-          onClick={() => setModalOpen(true)}
+          disabled={process.env.NODE_ENV !== "production"}
+          className={`absolute top-1/2 right-6 transform -translate-y-1/2 rounded-full font-ubuntu hidden sm:inline-flex 
+                      transition-all duration-300 ease-out overflow-hidden group 
+                      ${process.env.NODE_ENV === "production" ? "bg-white text-black" : "bg-gray-300 text-gray-500 cursor-not-allowed"}`}
+          onClick={process.env.NODE_ENV === "production" ? () => setModalOpen(true) : undefined}
         >
           <span className="absolute inset-0 w-0 bg-gray-400 transition-all duration-300 ease-out group-hover:w-full"></span>
-          <span className="relative hover:text-white z-10 flex items-center gap-2">
+          <span className="relative z-10 flex items-center gap-2">
             {contactData.Bottom_Button} <ArrowRight className="w-4 h-4" />
           </span>
         </Button>
 
+        {/* Small Screen Button */}
         <Button
           size="lg"
-          className="mt-4 rounded-full text-black font-ubuntu bg-white sm:hidden
-                    transition-all duration-300 ease-out overflow-hidden relative group"
-          onClick={() => setModalOpen(true)}
+          disabled={process.env.NODE_ENV !== "production"}
+          className={`mt-4 rounded-full font-ubuntu sm:hidden transition-all duration-300 ease-out overflow-hidden relative group
+                      ${process.env.NODE_ENV === "production" ? "bg-white text-black" : "bg-gray-300 text-gray-500 cursor-not-allowed"}`}
+          onClick={process.env.NODE_ENV === "production" ? () => setModalOpen(true) : undefined}
         >
-          <span className="absolute inset-0 w-0  bg-gray-400 transition-all duration-300 ease-out group-hover:w-full "></span>
-          <span className="relative hover:text-white z-10 flex items-center gap-2">
+          <span className="absolute inset-0 w-0 bg-gray-400 transition-all duration-300 ease-out group-hover:w-full"></span>
+          <span className="relative z-10 flex items-center gap-2">
             {contactData.Bottom_Button} <ArrowRight className="w-4 h-4" />
           </span>
         </Button>

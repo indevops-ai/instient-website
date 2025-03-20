@@ -90,15 +90,20 @@ export default function Breadcrumb() {
 
         {/* Get in Touch Button */}
         <button
-          onClick={openDialog}
+          onClick={process.env.NODE_ENV === "production" ? openDialog : undefined}
           aria-label="Open contact dialog"
-          className="bg-gray-300 text-black px-4 py-2 w-full sm:w-auto rounded-md flex items-center justify-center text-sm font-medium shadow-md hover:shadow-lg transition-all duration-300 ease-out overflow-hidden relative group"
+          disabled={process.env.NODE_ENV !== "production"}
+          className={`px-4 py-2 w-full sm:w-auto rounded-md flex items-center justify-center text-sm font-medium shadow-md transition-all duration-300 ease-out overflow-hidden relative group 
+            ${process.env.NODE_ENV === "production" 
+              ? "bg-gray-300 text-black hover:shadow-lg"
+              : "bg-gray-200 text-gray-500 cursor-not-allowed"}`}
         >
           <span className="absolute inset-0 w-0 bg-gray-400 transition-all duration-300 ease-out group-hover:w-full origin-left"></span>
-          <span className="relative hover:text-white z-10 flex items-center">
+          <span className="relative z-10 flex items-center">
             Get in Touch <ArrowRight className="w-4 h-4 ml-2" />
           </span>
         </button>
+
       </nav>
       <ZohoFormDialog open={isDialogOpen} onClose={closeDialog} />
     </>

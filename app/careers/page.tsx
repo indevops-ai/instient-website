@@ -100,20 +100,33 @@ export default function Careers() {
           <Card className="lg:w-[600px] sm:w-[650px] bg-gradient-to-b from-[#3c83c1] to-[#459ae5] text-white font-ubuntu opacity-90">
             <CardContent>
               <p className="text-4xl pt-24 sm:pt-20 mb-10 font-ubuntu font-medium">{careerData.Title}</p>
-              <Link href="https://careers.instient.ai/jobs/Careers">
-              <Button className="relative overflow-hidden bg-white text-gray-600 rounded-full  flex items-center mt-5 mb-10 px-6 py-6 font-light w-full sm:w-[60%] justify-between group">
-                <span className="absolute inset-0 w-0 bg-blue-600 transition-all duration-300 ease-out group-hover:w-full origin-left"></span>
-                <span className="relative z-10 flex items-center group-hover:text-white">
-                  Explore Openings...
-                </span>
-                <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-[#3c83c1] text-white rounded-full">
-                  <ArrowRight className="w-4 h-4" />
-                </span>
-              </Button>
-              </Link>
+
+              {process.env.NODE_ENV === "production" ? (
+                <Link href="https://careers.instient.ai/jobs/Careers">
+                  <Button className="relative overflow-hidden bg-white text-gray-600 rounded-full flex items-center mt-5 mb-10 px-6 py-6 font-light w-full sm:w-[60%] justify-between group">
+                    <span className="absolute inset-0 w-0 bg-blue-600 transition-all duration-300 ease-out group-hover:w-full origin-left"></span>
+                    <span className="relative z-10 flex items-center group-hover:text-white">
+                      Explore Openings...
+                    </span>
+                    <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-[#3c83c1] text-white rounded-full">
+                      <ArrowRight className="w-4 h-4" />
+                    </span>
+                  </Button>
+                </Link>
+              ) : (
+                <Button disabled className="bg-gray-400 cursor-not-allowed text-white rounded-full flex items-center mt-5 mb-10 px-6 py-6 font-light w-full sm:w-[60%] justify-between">
+                  <span className="relative z-10 flex items-center">
+                    Explore Openings (Disabled in Dev)
+                  </span>
+                  <span className="relative z-10 w-8 h-8 flex items-center justify-center bg-gray-500 text-white rounded-full">
+                    <ArrowRight className="w-4 h-4" />
+                  </span>
+                </Button>
+              )}
             </CardContent>
           </Card>
         </div>
+
 
 
       </div>

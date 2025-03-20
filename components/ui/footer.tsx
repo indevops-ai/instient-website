@@ -11,15 +11,16 @@ export function Footer() {
 
   const footerRoutes = [
     { name: "Services", href: "/services" },
-    //{ name: "Case Studies", href: "/casestudies" },
     { name: "Clients", href: "/clients" },
     { name: "Careers", href: "/careers" },
-    { name: "Support", href: "https://support.instient.ai/portal/en/home" },
-    // { name: "News", href: "/news" },
+    ...(process.env.NODE_ENV === "production"
+      ? [{ name: "Support", href: "https://support.instient.ai/portal/en/home" }]
+      : []), // Only include "Support" in production
     { name: "Blogs", href: "/blogs" },
     { name: "About us", href: "/aboutus" },
     { name: "Contact us", href: "/contactus" },
   ];
+  
 
   const policyLinks = [
     { name: "Cookie Policy", href: "/cookiepolicy" },
