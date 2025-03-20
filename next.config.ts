@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'dev-api.instient.ai', // Development API
+        hostname: 'api.instient.ai', // Development API
         pathname: '/uploads/**',
       },
     ],
