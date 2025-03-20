@@ -15,6 +15,8 @@ declare global {
 
 const ZohoChat = () => {
   useEffect(() => {
+    if (process.env.NODE_ENV !== "production") return; // Prevent execution in development
+
     window.$zoho = window.$zoho || {};
     window.$zoho.salesiq = window.$zoho.salesiq || {
       widgetcode:
