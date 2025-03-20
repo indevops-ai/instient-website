@@ -11,8 +11,10 @@ export const metadata: Metadata = {
 
 async function fetchWhyJoinPageData() {
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
+  const apiUrl = process.env.NEXT_PUBLIC_API_DOMAIN;
+
   const response = await fetch(
-    `https://api.instient.ai/api/whyjoininstient?populate=*`,
+    `${apiUrl}/api/whyjoininstient?populate=*`,
     {
       headers: { Authorization: `Bearer ${apiToken}` },
       cache: "no-store",
@@ -51,7 +53,7 @@ export default async function WhyJoinInstientPage() {
     <main>
       <div className="w-full h-[425px] sm:h-[450px] p-6 font-ubuntu relative">
         <Image
-          src={`https://api.instient.ai${url}`}
+          src={`${process.env.NEXT_PUBLIC_API_DOMAIN}${url}`}
           alt="Career Image"
           fill
           priority
@@ -139,7 +141,7 @@ function BannerSection({ title, description, imageUrl }: BannerSectionProps) {
   return (
     <div className="relative w-full min-h-[500px] sm:h-[400px] flex items-center justify-start mb-16 sm:mb-10 px-4 sm:pl-10">
       <Image
-        src={`https://api.instient.ai${imageUrl}`}
+        src={`${process.env.NEXT_PUBLIC_API_DOMAIN}${imageUrl}`}
         alt={title}
         fill
         className="object-cover object-center -z-10"

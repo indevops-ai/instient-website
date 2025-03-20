@@ -12,9 +12,10 @@ export const metadata: Metadata = {
 
 async function fetchTechnologyPartnerPageData() {
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
+  const apiUrl = process.env.NEXT_PUBLIC_API_DOMAIN;
 
   const response = await fetch(
-    `https://api.instient.ai/api/technologypartnnerpage?populate=*`, // Replace with your actual endpoint
+    `${apiUrl}/api/technologypartnnerpage?populate=*`, // Replace with your actual endpoint
     {
       headers: {
         Authorization: `Bearer ${apiToken}`,
@@ -55,7 +56,7 @@ export default async function TechnologyPartnerPage() {
     <main>
       <div className="w-full h-[425px] sm:h-[450px]  p-6 font-ubuntu relative">
         <Image
-          src={`https://api.instient.ai${url}`} // Dynamically set the full image URL from the API
+          src={`${process.env.NEXT_PUBLIC_API_DOMAIN}${url}`} // Dynamically set the full image URL from the API
           alt="Career Image"
           fill
           priority

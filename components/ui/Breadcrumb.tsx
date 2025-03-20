@@ -7,16 +7,19 @@ import ServicesBreadcrumb from "./ServicesBreadcrumb";
 import CaseStudiesBreadcrumb from "./CaseStudiesBreadcrumb";
 //import NewsBreadcrumb from "./NewsBreadcrumb";
 import AboutUsBreadcrumb from "./AboutUsBreadcrumb";
+import BlogsBreadcrumb from "./BlogsBreadcrumb";
 import CareersBreadcrumb from "./CareersBreadcrumb";
 import CareerPathBreadcrumb from "./CareerPathBreadcrumb";
 import { useState } from "react";
 import ZohoFormDialog from "./ZohoFormDialog";
+
 
 const routeMap: Record<string, string> = {
   services: "Services",
   //casestudies: "Case Studies",
   clients: "Clients",
   careers: "Careers",
+  blogs: "Blogs",
   //news: "News",
   aboutus: "About us",
   contactus: "Contact us",
@@ -64,6 +67,7 @@ export default function Breadcrumb() {
                 {segment === "services" && <ServicesBreadcrumb />}
                 {segment === "casestudies" && <CaseStudiesBreadcrumb />}
                 {/* {segment === "news" && <NewsBreadcrumb />} */}
+                {segment === "blogs" && <BlogsBreadcrumb />}
                 {segment === "aboutus" && <AboutUsBreadcrumb />}
                 {segment === "careers" && <CareersBreadcrumb />}
                 {segment === "career-path" && <CareerPathBreadcrumb />}

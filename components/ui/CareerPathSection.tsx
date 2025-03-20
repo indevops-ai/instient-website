@@ -19,6 +19,8 @@ interface CareerItem {
 export function CareerPathSection() {
   const [careerData, setCareerData] = useState<CareerItem[]>([]);
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
+  const apiUrl = process.env.NEXT_PUBLIC_API_DOMAIN; // Use API base URL from .env
+
 
   useEffect(() => {
     const myHeaders = new Headers();
@@ -30,13 +32,13 @@ export function CareerPathSection() {
         redirect: "follow" as RequestRedirect, // Ensure proper type
     };
 
-    fetch("https://api.instient.ai/api/career-paths?populate=*", requestOptions)
+    fetch(`${apiUrl}/api/career-paths?populate=*`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setCareerData(result.data);
       })
       .catch((error) => console.error("Error fetching career data:", error));
-  }, [apiToken]);
+  }, [apiToken, apiUrl]);
 
   return (
     <div className="py-10 font-ubuntu relative sm:mt-0">
@@ -46,7 +48,7 @@ export function CareerPathSection() {
         <div key={item.id} className="relative mb-14 sm:mb-14 w-full sm:w-[407px]">
           {/* Background Underlap Image */}
           <Image
-            src={`https://api.instient.ai${item.Image.url}`} // Assuming item has BackgroundImage property
+            src={`${apiUrl}${item.Image.url}`} // Assuming item has BackgroundImage property
             alt="Career Background"
             className="absolute top-[25%] sm:top-1/3 left-1/2 sm:left-[50%] w-full h-[300px] bg-gray-200 -translate-y-1/2 -translate-x-1/2 z-0 rounded-md"
             width={407} // Adjust based on your design

@@ -26,6 +26,7 @@ interface ContactItem {
 export function ContactSection() {
   const [contactData, setContactData] = useState<ContactItem[]>([]);
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
+  const apiUrl = process.env.NEXT_PUBLIC_API_DOMAIN; // Use API base URL from .env
 
   useEffect(() => {
     if (!apiToken) return;
@@ -38,13 +39,13 @@ export function ContactSection() {
       redirect: "follow" as RequestRedirect,
     };
     
-    fetch("https://api.instient.ai/api/contacts", requestOptions)
+    fetch(`${apiUrl}/api/contacts`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setContactData(result.data);
       })
       .catch((error) => console.error("Error fetching contact data:", error));
-  }, [apiToken]);
+  }, [apiToken, apiUrl]);
 
   return (
     <div className="px-6 py-4 mt-10 sm:mt-10">

@@ -16,6 +16,7 @@ export function Footer() {
     { name: "Careers", href: "/careers" },
     { name: "Support", href: "https://support.instient.ai/portal/en/home" },
     // { name: "News", href: "/news" },
+    { name: "Blogs", href: "/blogs" },
     { name: "About us", href: "/aboutus" },
     { name: "Contact us", href: "/contactus" },
   ];

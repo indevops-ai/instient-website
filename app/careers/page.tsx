@@ -25,12 +25,14 @@ export default function Careers() {
     const [careerData, setCareerData] = useState<CareerData | null>(null);
     const pathname = usePathname();
     const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
+    const apiUrl = process.env.NEXT_PUBLIC_API_DOMAIN; // Use API base URL from .env
+
   
     useEffect(() => {
       const fetchCareerData = async () => {
         if (!apiToken) return;
         try {
-          const response = await fetch("https://api.instient.ai/api/careerpage?populate=*", {
+          const response = await fetch(`${apiUrl}/api/careerpage?populate=*`, {
             headers: {
               Authorization: `Bearer ${apiToken}`,
             },
@@ -46,7 +48,7 @@ export default function Careers() {
       };
   
       fetchCareerData();
-    }, [pathname, apiToken]);
+    }, [pathname, apiToken, apiUrl]);
   
     if (!careerData) {
       return (
@@ -67,7 +69,7 @@ export default function Careers() {
       <div className="w-full h-[425px] sm:h-[450px] p-6 font-ubuntu relative">
         {/* Background Image */}
         <Image
-          src={`https://api.instient.ai${careerData.Image.url}`} // Dynamically set the full image URL from the API
+          src={`${apiUrl}${careerData.Image.url}`} // Dynamically set the full image URL from the API
           alt="Career Image"
           fill
           priority

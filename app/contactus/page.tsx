@@ -28,12 +28,13 @@ export default function Contact() {
   const [isModalOpen, setModalOpen] = useState(false);
   const pathname = usePathname();
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
+  const apiUrl = process.env.NEXT_PUBLIC_API_DOMAIN; // Use API base URL from .env
 
   useEffect(() => {
     const fetchContactData = async () => {
       if (!apiToken) return;
       try {
-        const response = await fetch("https://api.instient.ai/api/contactpage?populate=*", {
+        const response = await fetch(`${apiUrl}/api/contactpage?populate=*`, {
           headers: {
             Authorization: `Bearer ${apiToken}`,
           },
@@ -49,7 +50,7 @@ export default function Contact() {
     };
 
     fetchContactData();
-  }, [pathname, apiToken]);
+  }, [pathname, apiToken, apiUrl]);
 
   if (!contactData) {
     return (
@@ -67,7 +68,7 @@ export default function Contact() {
     <main>
       <div className="w-full h-[425px] sm:h-[450px] p-6 font-ubuntu relative">
         <Image 
-         src={`https://api.instient.ai${contactData.Image.url}`} 
+         src={`${apiUrl}${contactData.Image.url}`} 
          alt="Career Image"
          fill
          priority

@@ -1,48 +1,53 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Footer } from "@/components/ui/footer";
-import Image from 'next/image'; // Importing Image
+import Image from "next/image";
 import { Metadata } from "next";
 
 async function fetchServiceData(slug: string) {
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
+  const apiUrl = process.env.NEXT_PUBLIC_API_DOMAIN; // Dynamic API URL
 
-  const response = await fetch(
-    `https://api.instient.ai/api/service-instients?filters[slug][$eq]=${slug}&populate=*`,
-    {
-      headers: {
-        Authorization: `Bearer ${apiToken}`,
-      },
-      cache: "no-store",
-    }
-  );
-
-  const data = await response.json();
-  return data?.data?.[0] ?? null;
-}
-
-export async function generateMetadata({params,}: {
-params: Promise< { slug: string }>;
-}): Promise<Metadata> {
-  const { slug } = await params;
-  const serviceData = await fetchServiceData(slug);
-
-  if (!serviceData) {
-    return {
-      title: "Service Not Found - Instient",
-      description: "The requested service does not exist.",
-    };
+  if (!apiToken || !apiUrl) {
+    console.error("API token or API URL is missing.");
+    return null;
   }
 
+  try {
+    const response = await fetch(
+      `${apiUrl}/api/service-instients?filters[slug][$eq]=${slug}&populate=*`,
+      {
+        headers: {
+          Authorization: `Bearer ${apiToken}`,
+        },
+        cache: "no-store",
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch service data");
+    }
+
+    const data = await response.json();
+    return data?.data?.[0] ?? null;
+  } catch (error) {
+    console.error("Error fetching service data:", error);
+    return null;
+  }
+}
+
+export async function generateMetadata({ params }: { params: Promise< { slug: string } >}): Promise<Metadata> {
+  const { slug }= await params;
+  const serviceData = await fetchServiceData(slug);
+
   return {
-    title: `${serviceData.Service_Title} - Instient`,
-    description: serviceData.Service_Description || "Learn more about this service.",
+    title: serviceData ? `${serviceData.Service_Title} - Instient` : "Service Not Found - Instient",
+    description: serviceData?.Service_Description || "The requested service does not exist.",
   };
 }
 
-export default async function ServiceSlugPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-
-  const serviceData  = await fetchServiceData(slug);
+export default async function ServiceSlugPage({ params }: { params: Promise< { slug: string }> }) {
+  const { slug }= await params;
+  const serviceData = await fetchServiceData(slug);
 
   if (!serviceData) {
     return <p className="text-center mt-20">Service not found or incomplete data.</p>;
@@ -62,43 +67,17 @@ export default async function ServiceSlugPage({ params }: { params: Promise<{ sl
   const content1Cards = extractCardData(contentData, "Service_Content1_Card");
   const processDetails = extractCardData(contentData, "Service_Content3_Card");
 
-
-
-  
-
   return (
     <main>
       <div className="w-full h-[425px] sm:h-[450px] p-6 font-ubuntu relative">
-        {/* Image Component Replacing Background */}
-
-        
         <Image
-          src={url ? `https://api.instient.ai${url}` : '/default-image.png'} // Use default image if url is undefined
-          alt="Career Image"
+          src={url ? `${process.env.NEXT_PUBLIC_API_DOMAIN}${url}` : "/default-image.png"}
+          alt="Service Thumbnail"
           fill
           priority
           sizes="100vw"
           className="-z-10 object-cover"
         />
-
-        <svg
-          className="absolute top-1/3 left-0 w-[68%] sm:w-[98%] h-auto -z-10 opacity-60"
-          viewBox="0 0 800 200"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M0 50 C150 100, 300 0, 450 50 S 700 150, 800 100"
-            stroke="#3c83c1"
-            strokeWidth="2"
-            fill="transparent"
-          />
-          <polygon
-            points="780,95 800,100 780,105"
-            fill="#3c83c1"
-          />
-        </svg>
-
 
         <div className="my-64 sm:my-64 relative z-10">
           <Card className="lg:w-[600px] sm:w-[650px] bg-gradient-to-b from-[#3c83c1] to-[#459ae5] text-white font-ubuntu opacity-90">
@@ -129,12 +108,7 @@ export default async function ServiceSlugPage({ params }: { params: Promise<{ sl
   );
 }
 
-interface WhatMakesUsStandOutProps {
-  title: string;
-  cards: Array<{ title: string; content: string; description?: string }>;
-}
-
-function WhatMakesUsStandOut({ title, cards }: WhatMakesUsStandOutProps) {
+function WhatMakesUsStandOut({ title, cards }: { title: string; cards: CardData[] }) {
   return (
     <div className="sm:px-6 px-3 py-4 mt-10 sm:mt-10 sm:mb-16 mb-10">
       <h2 className="text-3xl font-medium font-ubuntu sm:text-left px-6">{title}</h2>
@@ -152,12 +126,7 @@ function WhatMakesUsStandOut({ title, cards }: WhatMakesUsStandOutProps) {
   );
 }
 
-interface OurProcessProps {
-  title: string;
-  processDetails: Array<{ title: string; content: string; description: string }>;
-}
-
-function OurProcess({ title, processDetails }: OurProcessProps) {
+function OurProcess({ title, processDetails }: { title: string; processDetails: CardData[] }) {
   return (
     <div className="px-6 py-4 mt-10 sm:mt-10 sm:mb-10">
       <h2 className="text-3xl font-ubuntu font-medium px-4 sm:text-left sm:px-6 sm:mb-6 mb-4">{title}</h2>
@@ -196,4 +165,3 @@ function extractCardData(data: { [key: string]: string | undefined }, keyPrefix:
 
   return cards;
 }
-

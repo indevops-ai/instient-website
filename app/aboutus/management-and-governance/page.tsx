@@ -11,9 +11,10 @@ export const metadata: Metadata = {
 
 async function fetchManagementAndGovernancePageData() {
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
+  const apiUrl = process.env.NEXT_PUBLIC_API_DOMAIN;
 
   const response = await fetch(
-    `https://api.instient.ai/api/managementandgovernancepage?populate=*`,
+    `${apiUrl}/api/managementandgovernancepage?populate=*`,
     {
       headers: {
         Authorization: `Bearer ${apiToken}`,
@@ -57,7 +58,7 @@ export default async function ManagementAndGovernancePage() {
     <main>
       <div className="w-full h-[425px] sm:h-[450px]  p-6 font-ubuntu relative">
           <Image
-              src={`https://api.instient.ai${url}`} // Dynamically set the full image URL from the API
+              src={`${process.env.NEXT_PUBLIC_API_DOMAIN}${url}`} // Dynamically set the full image URL from the API
               alt="Career Image"
               fill
               priority
@@ -107,7 +108,7 @@ export default async function ManagementAndGovernancePage() {
                   <p className="text-lg px-6 text-white mb-20">{managementModel}</p>
                 </div>
                 <div className="md:w-1/2 flex justify-end">
-                  {bannerImageUrl1 && <Image src={`https://api.instient.ai${bannerImageUrl1}`} alt="Guiding Values" width={700} height={400} className="shadow-lg" />}
+                  {bannerImageUrl1 && <Image src={`${process.env.NEXT_PUBLIC_API_DOMAIN}${bannerImageUrl1}`} alt="Guiding Values" width={700} height={400} className="shadow-lg" />}
                 </div>
               </div>
             </section>
@@ -115,7 +116,7 @@ export default async function ManagementAndGovernancePage() {
             <section className="bg-gray-600 text-white mb-10 mt-32 sm:mt-20">
               <div className="container font-ubuntu mx-auto flex flex-col md:flex-row items-center">
               <div className="md:w-1/2 flex justify-start">
-                  {bannerImageUrl2 && <Image src={`https://api.instient.ai${bannerImageUrl2}`} alt="Guiding Values" width={700} height={400} className="shadow-lg" />}
+                  {bannerImageUrl2 && <Image src={`${process.env.NEXT_PUBLIC_API_DOMAIN}${bannerImageUrl2}`} alt="Guiding Values" width={700} height={400} className="shadow-lg" />}
               </div>
               <div className="md:w-1/2 px-6 mt-5 items-center">
                   <h2 className="text-4xl px-6 font-bold  mb-8 mt-5">Governance</h2>

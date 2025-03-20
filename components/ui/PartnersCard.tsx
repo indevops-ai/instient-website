@@ -16,7 +16,9 @@ interface Partner {
 // Function to fetch partners from the API
 async function fetchPartners(): Promise<Partner[]> {
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
-  const response = await fetch('https://api.instient.ai/api/globalpartners?populate=*', {
+  const apiUrl = process.env.NEXT_PUBLIC_API_DOMAIN;
+
+  const response = await fetch(`${apiUrl}/api/globalpartners?populate=*`, {
     headers: { Authorization: `Bearer ${apiToken}` },
     cache: 'no-store',
   });
@@ -43,7 +45,7 @@ export default function PartnersCard() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {partners.map((partner, index) => { 
           const imageUrl = partner.logo?.url || partner.logo?.formats?.thumbnail?.url;
-          const fullImageUrl = imageUrl ? `https://api.instient.ai${imageUrl}` : '/placeholder.jpg';
+          const fullImageUrl = imageUrl ? `${process.env.NEXT_PUBLIC_API_DOMAIN}${imageUrl}` : '/placeholder.jpg';
 
           return (
             <div key={index} className="flex items-center mx-6 bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200">

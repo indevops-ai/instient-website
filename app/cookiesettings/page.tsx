@@ -11,9 +11,10 @@ export const metadata: Metadata = {
 
 async function fetchCookieSettingsPageData() {
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
+  const apiUrl = process.env.NEXT_PUBLIC_API_DOMAIN;
 
   const response = await fetch(
-    `https://api.instient.ai/api/cookiesettingspage?populate=*`, 
+    `${apiUrl}/api/cookiesettingspage?populate=*`, 
     {
       headers: {
         Authorization: `Bearer ${apiToken}`,
@@ -43,7 +44,7 @@ export default async function CookieSettingsPage() {
     <main>
       <div className="w-full h-[425px] sm:h-[450px] p-6 font-ubuntu relative ">
         <Image
-          src={url ? `https://api.instient.ai${url}` : '/default-image.png'} // Use default image if url is undefined
+          src={url ? `${process.env.NEXT_PUBLIC_API_DOMAIN}${url}` : '/default-image.png'} // Use default image if url is undefined
           alt="Background Image"
           fill
           priority

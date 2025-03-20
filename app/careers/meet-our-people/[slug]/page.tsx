@@ -21,9 +21,10 @@ interface MemberData {
 
 async function fetchMemberData(slug: string): Promise<MemberData | null> {
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
+  const apiUrl = process.env.NEXT_PUBLIC_API_DOMAIN;
 
   const response = await fetch(
-    `https://api.instient.ai/api/meetourpeople-instients?filters[slug][$eq]=${slug}&populate=*`,
+    `${apiUrl}/api/meetourpeople-instients?filters[slug][$eq]=${slug}&populate=*`,
     {
       headers: {
         Authorization: `Bearer ${apiToken}`,
@@ -93,7 +94,7 @@ export default function MeetOurPeopleSlugPage({ params }: { params: Promise< { s
       <div className="relative w-full h-[675px] sm:h-[450px] flex flex-col lg:flex-row gap-4 items-center justify-center p-6 sm:p-8">
         <div className="relative w-60 h-96 sm:w-80 sm:h-96 mt-5 rounded sm:mt-44 bg-white shadow-2xl overflow-hidden lg:-translate-y-8 lg:-translate-x-8 z-10 sm:rounded-lg">
           <Image
-            src={url ? `https://api.instient.ai${url}` : "/default-image.png"}
+            src={url ? `${process.env.NEXT_PUBLIC_API_DOMAIN}${url}` : "/default-image.png"}
             alt={`${Name}'s Image`}
             layout="fill"
             objectFit="cover"
