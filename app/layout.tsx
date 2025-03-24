@@ -28,13 +28,15 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   const isProduction = process.env.NODE_ENV === "production";
+  const isPreProduction = process.env.VERCEL_ENV === "preview"; // Check if running in preproduction (Vercel preview)
+  const isLive = isProduction && !isPreProduction; // Enable scripts only for live production
 
   return (
     <html lang="en">
       <head>
         <CanonicalHead />
 
-        {isProduction && (
+        {isLive && (
           <>
             {/* Ahrefs Web Analytics */}
             <Script
@@ -54,6 +56,7 @@ export default function RootLayout({
               `}
             </Script>
 
+            {/* Zoho PageSense */}
             <Script
               src="https://cdn-in.pagesense.io/js/instient/41ddc2910415478f9d120fc3c38b77a8.js"
               strategy="afterInteractive"
@@ -63,8 +66,8 @@ export default function RootLayout({
       </head>
 
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {/* Google Tag Manager (noscript) - Load only in production */}
-        {isProduction && (
+        {/* Google Tag Manager (noscript) - Load only in live production */}
+        {isLive && (
           <noscript>
             <iframe
               src="https://www.googletagmanager.com/ns.html?id=GTM-KJXR6X7W"
@@ -84,9 +87,8 @@ export default function RootLayout({
           <ClientLayout>{children}</ClientLayout>
         </main>
         
-       {/* Zoho Chat - Only in Production */}
-       {isProduction && <ZohoChat />}
-       console.log($process.env.TESTING);
+        {/* Zoho Chat - Only in Live Production */}
+        {isLive && <ZohoChat />}
       </body>
     </html>
   );

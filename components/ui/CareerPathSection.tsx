@@ -21,6 +21,7 @@ export function CareerPathSection() {
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
   const apiUrl = process.env.NEXT_PUBLIC_API_DOMAIN; // Use API base URL from .env
 
+  const isDisabled = process.env.NODE_ENV !== "production" || process.env.NEXT_PUBLIC_VERCEL_ENV === "preview";
 
   useEffect(() => {
     const myHeaders = new Headers();
@@ -63,20 +64,21 @@ export function CareerPathSection() {
               </p>
             </CardContent>
             <CardFooter className="flex justify-end sm:py-6 pb-6">
-              {process.env.NODE_ENV === "production" ? (
-                <Link href="https://careers.instient.ai/jobs/Careers" passHref>
-                  <Button className="text-black border-black rounded-full flex items-center font-ubuntu gap-2 
-                      hover:bg-gray-200 hover:border-gray-300 transition-all duration-300 ease-in-out transform hover:scale-105">
-                    <ArrowRight className="w-4 h-4" />
-                  </Button>
-                </Link>
-              ) : (
-                <Button 
-                  disabled 
-                  className="text-gray-400 border-gray-300 cursor-not-allowed rounded-full flex items-center font-ubuntu gap-2">
+            {isDisabled ? (
+              <Button 
+                disabled 
+                className="text-gray-400 border-gray-300 cursor-not-allowed rounded-full flex items-center font-ubuntu gap-2">
+                <ArrowRight className="w-4 h-4" />
+              </Button>
+            ) : (
+              <Link href="https://careers.instient.ai/jobs/Careers" passHref>
+                <Button className="text-black border-black rounded-full flex items-center font-ubuntu gap-2 
+                    hover:bg-gray-200 hover:border-gray-300 transition-all duration-300 ease-in-out transform hover:scale-105">
                   <ArrowRight className="w-4 h-4" />
                 </Button>
-              )}
+              </Link>
+            )}
+
             </CardFooter>
           </Card>
 
