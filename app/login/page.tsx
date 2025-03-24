@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useState } from "react";
+import { useRouter } from "next/navigation"; // ✅ Import useRouter
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -15,6 +16,7 @@ const loginSchema = z.object({
 
 export default function LoginPage() {
   const { toast } = useToast();
+  const router = useRouter(); // ✅ Initialize useRouter
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState<Record<string, string[]>>({});
   const [loading, setLoading] = useState(false);
@@ -43,7 +45,7 @@ export default function LoginPage() {
 
     setLoading(true);
     try {
-      const response = await fetch("https://dev-api.instient.ai/auth", {
+      const response = await fetch("http://localhost:5000/auth", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -51,8 +53,12 @@ export default function LoginPage() {
 
       const data = await response.json();
       if (response.ok) {
+        localStorage.setItem("token", data.token); // Store JWT in localStorage
         toast({ description: "Login successful!", variant: "default" });
         setFormData({ email: "", password: "" });
+        
+        // ✅ Redirect to UserProfilePage after login
+        router.push("/UserProfilePage");
       } else {
         toast({ description: data.message || "Login failed.", variant: "destructive" });
       }
@@ -102,6 +108,14 @@ export default function LoginPage() {
             {loading ? "Logging in..." : "Login"}
           </Button>
         </form>
+        <div className="mt-4 text-center">
+          <p className="text-sm">
+            Don&apos;t have an account? 
+            <button onClick={() => router.push("/signup")} className="text-blue-500 hover:underline ml-1">
+              Sign up
+            </button>
+          </p>
+        </div>
       </div>
     </div>
   );

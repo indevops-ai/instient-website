@@ -40,6 +40,8 @@ export default function Home() {
   const pathname = usePathname();
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
   const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN;
+
+  const isProduction = process.env.NODE_ENV === "production";
   useEffect(() => {
     const fetchHomeData = async () => {
       if (!apiToken || !apiDomain) return;
@@ -120,6 +122,8 @@ export default function Home() {
             Latest Insights
           </h2>
           <HomeSlider/>
+
+          {isProduction && <p>These is production </p>}
         </div>
 
         

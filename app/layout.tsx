@@ -86,6 +86,7 @@ export default function RootLayout({
         
        {/* Zoho Chat - Only in Production */}
        {isProduction && <ZohoChat />}
+       console.log($process.env.TESTING);
       </body>
     </html>
   );

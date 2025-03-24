@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useState } from "react";
+import { useRouter } from "next/navigation"; // ✅ Import useRouter
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -28,6 +29,7 @@ const signupSchema = z
 
 export default function SignupPage() {
   const { toast } = useToast();
+  const router = useRouter(); // ✅ Initialize useRouter
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -71,7 +73,7 @@ export default function SignupPage() {
 
       console.log("Sending request to API:", payload);
 
-      const response = await fetch("https://dev-api.instient.ai/signup", {
+      const response = await fetch("http://localhost:5000/signup", {
         method: "POST",
         headers: { 
           "Content-Type": "application/json",
@@ -92,6 +94,11 @@ export default function SignupPage() {
       if (response.ok) {
         toast({ description: "Signup successful!", variant: "default" });
         setFormData({ name: "", email: "", phone: "", password: "", confirmPassword: "" });
+
+        // ✅ Redirect to login page
+        setTimeout(() => {
+          router.push("/login");
+        }, 1500);
       } else {
         console.error("Signup failed:", data);
         toast({ description: data.message || "Signup failed.", variant: "destructive" });
@@ -145,6 +152,16 @@ export default function SignupPage() {
             {loading ? "Signing up..." : "Sign Up"}
           </Button>
         </form>
+        {/* Already a member? Redirect to login */}
+        <p className="text-center text-sm mt-4">
+          Already a member?{" "}
+          <span
+            className="text-blue-600 cursor-pointer hover:underline"
+            onClick={() => router.push("/login")}
+          >
+            Login here
+          </span>
+        </p>
       </div>
     </div>
   );
