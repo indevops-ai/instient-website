@@ -38,8 +38,18 @@ interface HomeData {
 export default function Home() {
   const [homeData, setHomeData] = useState<HomeData | null>(null);
   const pathname = usePathname();
-  const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
-  const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN;
+  
+
+  const isDevelopment = process.env.NODE_ENV === "development";
+
+  const apiDomain = isDevelopment
+  ? process.env.NEXT_PUBLIC_DEV_API_DOMAIN
+  : process.env.NEXT_PUBLIC_API_DOMAIN;
+
+  const apiToken = isDevelopment
+  ? process.env.NEXT_PUBLIC_DEV_API_TOKEN
+  : process.env.NEXT_PUBLIC_API_TOKEN;
+
 
   const isProduction = process.env.NODE_ENV === "production";
   useEffect(() => {
