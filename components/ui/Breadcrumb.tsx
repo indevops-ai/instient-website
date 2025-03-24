@@ -13,7 +13,7 @@ import CareerPathBreadcrumb from "./CareerPathBreadcrumb";
 import { useState } from "react";
 import ZohoFormDialog from "./ZohoFormDialog";
 
-
+// Mapping for routes
 const routeMap: Record<string, string> = {
   services: "Services",
   //casestudies: "Case Studies",
@@ -45,6 +45,8 @@ export default function Breadcrumb() {
       ? routeMap[segments[segments.length - 2]] ||
         formatBreadcrumbText(segments[segments.length - 2])
       : "Home";
+
+  const isDisabled = process.env.NODE_ENV !== "production" || process.env.NEXT_PUBLIC_VERCEL_ENV === "preview";
 
   return (
     <>
@@ -90,21 +92,21 @@ export default function Breadcrumb() {
 
         {/* Get in Touch Button */}
         <button
-          onClick={process.env.NODE_ENV === "production" ? openDialog : undefined}
+          onClick={isDisabled ? undefined : openDialog}
           aria-label="Open contact dialog"
-          disabled={process.env.NODE_ENV !== "production"}
+          disabled={isDisabled}
           className={`px-4 py-2 w-full sm:w-auto rounded-md flex items-center justify-center text-sm font-medium shadow-md transition-all duration-300 ease-out overflow-hidden relative group 
-            ${process.env.NODE_ENV === "production" 
-              ? "bg-gray-300 text-black hover:shadow-lg"
-              : "bg-gray-200 text-gray-500 cursor-not-allowed"}`}
+            ${isDisabled 
+              ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+              : "bg-gray-300 text-black hover:shadow-lg"}`}
         >
           <span className="absolute inset-0 w-0 bg-gray-400 transition-all duration-300 ease-out group-hover:w-full origin-left"></span>
           <span className="relative z-10 flex items-center">
             Get in Touch <ArrowRight className="w-4 h-4 ml-2" />
           </span>
         </button>
-
       </nav>
+
       <ZohoFormDialog open={isDialogOpen} onClose={closeDialog} />
     </>
   );

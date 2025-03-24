@@ -25,9 +25,8 @@ export default function Careers() {
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
   const apiUrl = process.env.NEXT_PUBLIC_API_DOMAIN; // Use API base URL from .env
 
-  const isProduction = process.env.NODE_ENV === "production";
-  const isPreProduction = process.env.VERCEL_ENV === "preview"; // Check if running in preproduction (Vercel preview)
-  const isLive = isProduction && !isPreProduction; // Enable buttons only for live production
+  const isProd = process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_VERCEL_ENV !== "preview";
+
 
   useEffect(() => {
     const fetchCareerData = async () => {
@@ -100,7 +99,7 @@ export default function Careers() {
                 {careerData.Title}
               </p>
 
-              {isLive ? (
+              {isProd ? (
                 <Link href="https://careers.instient.ai/jobs/Careers">
                   <Button className="relative overflow-hidden bg-white text-gray-600 rounded-full flex items-center mt-5 mb-10 px-6 py-6 font-light w-full sm:w-[60%] justify-between group">
                     <span className="absolute inset-0 w-0 bg-blue-600 transition-all duration-300 ease-out group-hover:w-full origin-left"></span>
@@ -125,6 +124,7 @@ export default function Careers() {
                   </span>
                 </Button>
               )}
+
             </CardContent>
           </Card>
         </div>
