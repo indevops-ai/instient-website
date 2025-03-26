@@ -5,11 +5,16 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'api.instient.ai',
+        hostname: 'api.instient.ai', // Production API
+        pathname: '/uploads/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'api.instient.ai', // Development API
         pathname: '/uploads/**',
       },
     ],
-  }
+  },
 };
 
 export default nextConfig;
