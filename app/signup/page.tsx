@@ -73,7 +73,7 @@ export default function SignupPage() {
 
       console.log("Sending request to API:", payload);
 
-      const response = await fetch("http://localhost:5000/signup", {
+      const response = await fetch("https://dev-api.instient.ai/signup", {
         method: "POST",
         headers: { 
           "Content-Type": "application/json",

@@ -29,7 +29,7 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErrors({});
-
+  
     const result = loginSchema.safeParse(formData);
     if (!result.success) {
       const formattedErrors: Record<string, string[]> = {};
@@ -42,23 +42,26 @@ export default function LoginPage() {
       toast({ description: "Please fix validation errors", variant: "destructive" });
       return;
     }
-
+  
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:5000/auth", {
+      const response = await fetch("https://dev-api.instient.ai/auth", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-
+  
       const data = await response.json();
       if (response.ok) {
-        localStorage.setItem("token", data.token); // Store JWT in localStorage
+        if (data.requires2FA) {
+          localStorage.setItem("temp_token", data.token); // Store temp token
+          router.push("/2fa"); // Redirect to 2FA page
+        } else {
+          localStorage.setItem("token", data.token); // Store real token
+          router.push("/UserProfilePage");
+        }
         toast({ description: "Login successful!", variant: "default" });
         setFormData({ email: "", password: "" });
-        
-        // ✅ Redirect to UserProfilePage after login
-        router.push("/UserProfilePage");
       } else {
         toast({ description: data.message || "Login failed.", variant: "destructive" });
       }
@@ -69,6 +72,8 @@ export default function LoginPage() {
       setLoading(false);
     }
   };
+  
+  
 
   return (
     <div className="flex justify-center items-center h-screen font-ubuntu bg-gray-100">

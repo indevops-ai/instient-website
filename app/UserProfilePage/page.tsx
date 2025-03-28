@@ -8,33 +8,40 @@ import { useRouter } from "next/navigation";
 export default function UserProfilePage() {
   const { toast } = useToast();
   const router = useRouter();
-  const [userData, setUserData] = useState<{ name: string; email: string; phone: string } | null>(null);
+  const [userData, setUserData] = useState<{ name: string; email: string; phone: string; is2FAEnabled: boolean } | null>(null);
   const [loading, setLoading] = useState(true);
+  const [is2FAEnabled, setIs2FAEnabled] = useState<boolean>(false); // Ensured a defined boolean state
 
   useEffect(() => {
     const fetchUserProfile = async () => {
-      const token = localStorage.getItem("token"); // Retrieve JWT from localStorage
+      const token = localStorage.getItem("token");
       if (!token) {
         toast({ description: "Unauthorized: No token found", variant: "destructive" });
-        setLoading(false);
+        router.push("/login");
         return;
       }
 
       try {
-        const response = await fetch("http://localhost:5000/user/profile", {
+        const response = await fetch("https://dev-api.instient.ai/user/profile", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`, // Sending JWT for authentication
+            Authorization: `Bearer ${token}`,
           },
         });
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch user profile");
+        if (response.status === 401) {
+          localStorage.removeItem("token");
+          toast({ description: "Session expired. Please log in again.", variant: "destructive" });
+          router.push("/login");
+          return;
         }
+
+        if (!response.ok) throw new Error("Failed to fetch user profile");
 
         const data = await response.json();
         setUserData(data);
+        setIs2FAEnabled(data.isTwoFactorEnabled); // Ensure boolean value
       } catch (error) {
         console.error("Error fetching user profile:", error);
         toast({ description: "Error loading profile", variant: "destructive" });
@@ -44,13 +51,40 @@ export default function UserProfilePage() {
     };
 
     fetchUserProfile();
-  }, [toast]);
+  }, [toast, router]);
+
+  const handleToggle2FA = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      toast({ description: "Unauthorized: No token found", variant: "destructive" });
+      return;
+    }
+
+    try {
+      const response = await fetch("https://dev-api.instient.ai/user/2fa/toggle", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ enable2FA: !is2FAEnabled }),
+      });
+
+      if (!response.ok) throw new Error("Failed to update 2FA status");
+
+      setIs2FAEnabled((prev) => !prev);
+      toast({ description: `Two-Factor Authentication ${!is2FAEnabled ? "Enabled" : "Disabled"}`, variant: "default" });
+    } catch (error) {
+      console.error("Error updating 2FA:", error);
+      toast({ description: "Error updating 2FA", variant: "destructive" });
+    }
+  };
 
   const handleLogout = () => {
-    localStorage.removeItem("token"); // Remove token
-    toast({ description: "Logged out successfully", variant: "default" }); // ✅ Change 'success' to 'default'
-    router.push("/login"); // Redirect to login page
-  };  
+    localStorage.removeItem("token");
+    toast({ description: "Logged out successfully", variant: "default" });
+    router.push("/login");
+  };
 
   return (
     <div className="flex justify-center items-center h-screen font-ubuntu bg-gray-100">
@@ -68,12 +102,32 @@ export default function UserProfilePage() {
                 <p className="text-gray-700"><strong>Mobile No:</strong> {userData.phone}</p>
               </div>
             </div>
+
+            {/* Toggle 2FA Switch */}
+            {userData && (
+              <label className="inline-flex items-center cursor-pointer mt-4">
+                <input 
+                  type="checkbox" 
+                  className="sr-only peer" 
+                  checked={!!is2FAEnabled} // Ensure it's always a boolean
+                  onChange={handleToggle2FA}
+                />
+                <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600"></div>
+                <span className="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">
+                  {is2FAEnabled ? "Disable 2FA" : "Enable 2FA"}
+                </span>
+              </label>
+            )}
+
+            <div>
             <button 
               onClick={handleLogout}
               className="mt-6 px-4 py-2 bg-red-500 text-white font-bold rounded-lg hover:bg-red-600 transition duration-300"
             >
               Logout
             </button>
+            </div>
+
           </>
         ) : (
           <p className="text-red-500">Failed to load profile</p>
