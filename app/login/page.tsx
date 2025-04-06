@@ -1,8 +1,7 @@
 "use client";
-
 import * as React from "react";
 import { useState } from "react";
-import { useRouter } from "next/navigation"; // ✅ Import useRouter
+import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -16,7 +15,7 @@ const loginSchema = z.object({
 
 export default function LoginPage() {
   const { toast } = useToast();
-  const router = useRouter(); // ✅ Initialize useRouter
+  const router = useRouter();
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState<Record<string, string[]>>({});
   const [loading, setLoading] = useState(false);
@@ -29,7 +28,7 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErrors({});
-  
+
     const result = loginSchema.safeParse(formData);
     if (!result.success) {
       const formattedErrors: Record<string, string[]> = {};
@@ -42,7 +41,7 @@ export default function LoginPage() {
       toast({ description: "Please fix validation errors", variant: "destructive" });
       return;
     }
-  
+
     setLoading(true);
     try {
       const response = await fetch("https://dev-api.instient.ai/auth", {
@@ -50,14 +49,14 @@ export default function LoginPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-  
+
       const data = await response.json();
       if (response.ok) {
         if (data.requires2FA) {
-          localStorage.setItem("temp_token", data.token); // Store temp token
-          router.push("/2fa"); // Redirect to 2FA page
+          localStorage.setItem("temp_token", data.token);
+          router.push("/2fa/validateotp");
         } else {
-          localStorage.setItem("token", data.token); // Store real token
+          localStorage.setItem("token", data.token);
           router.push("/UserProfilePage");
         }
         toast({ description: "Login successful!", variant: "default" });
@@ -72,8 +71,6 @@ export default function LoginPage() {
       setLoading(false);
     }
   };
-  
-  
 
   return (
     <div className="flex justify-center items-center h-screen font-ubuntu bg-gray-100">
@@ -81,16 +78,12 @@ export default function LoginPage() {
         <h2 className="text-2xl font-bold text-center mb-4">Login</h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-sm font-medium">
-              Email<span className="text-red-500"> *</span>
-            </label>
+            <label className="block text-sm font-medium">Email<span className="text-red-500"> *</span></label>
             <Input type="email" name="email" value={formData.email} onChange={handleChange} required />
             {errors.email?.[0] && <p className="text-red-500 text-xs">{errors.email[0]}</p>}
           </div>
           <div>
-            <label className="block text-sm font-medium">
-              Password<span className="text-red-500"> *</span>
-            </label>
+            <label className="block text-sm font-medium">Password<span className="text-red-500"> *</span></label>
             <div className="relative">
               <Input
                 type={showPassword ? "text" : "password"}
@@ -113,14 +106,6 @@ export default function LoginPage() {
             {loading ? "Logging in..." : "Login"}
           </Button>
         </form>
-        <div className="mt-4 text-center">
-          <p className="text-sm">
-            Don&apos;t have an account? 
-            <button onClick={() => router.push("/signup")} className="text-blue-500 hover:underline ml-1">
-              Sign up
-            </button>
-          </p>
-        </div>
       </div>
     </div>
   );

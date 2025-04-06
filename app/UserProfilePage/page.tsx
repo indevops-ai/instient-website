@@ -59,7 +59,13 @@ export default function UserProfilePage() {
       toast({ description: "Unauthorized: No token found", variant: "destructive" });
       return;
     }
-
+  
+    const password = prompt("Please enter your password to proceed:");
+    if (!password) {
+      toast({ description: "Password is required to proceed", variant: "destructive" });
+      return;
+    }
+  
     try {
       const response = await fetch("https://dev-api.instient.ai/user/2fa/toggle", {
         method: "POST",
@@ -67,18 +73,33 @@ export default function UserProfilePage() {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ enable2FA: !is2FAEnabled }),
+        body: JSON.stringify({ enable2FA: !is2FAEnabled, password }), // Send password with request
       });
-
-      if (!response.ok) throw new Error("Failed to update 2FA status");
-
-      setIs2FAEnabled((prev) => !prev);
-      toast({ description: `Two-Factor Authentication ${!is2FAEnabled ? "Enabled" : "Disabled"}`, variant: "default" });
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        toast({ description: errorData.error || "Failed to update 2FA status", variant: "destructive" });
+        return;
+      }
+  
+      const isEnabling2FA = !is2FAEnabled; // Capture current state before updating it
+  
+      setIs2FAEnabled(isEnabling2FA);
+      toast({ description: `Two-Factor Authentication ${isEnabling2FA ? "Enabled" : "Disabled"}`, variant: "default" });
+  
+      if (isEnabling2FA) {
+        localStorage.setItem("temp_token", token);
+        localStorage.removeItem("token");
+        router.push("/2fa/qr");
+      }
     } catch (error) {
       console.error("Error updating 2FA:", error);
       toast({ description: "Error updating 2FA", variant: "destructive" });
     }
   };
+  
+  
+  
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -118,6 +139,9 @@ export default function UserProfilePage() {
                 </span>
               </label>
             )}
+
+
+
 
             <div>
             <button 

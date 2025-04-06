@@ -39,7 +39,7 @@ export default function TwoFactorAuthPage() {
           return;
         }
 
-        const response = await fetch("https://dev-api.instient.ai/2fa/generate", {
+        const response = await fetch("http://localhost:5000/2fa/generate", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -77,7 +77,7 @@ export default function TwoFactorAuthPage() {
       }
 
 
-      const response = await fetch("https://dev-api.instient.ai/2fa/verify", {
+      const response = await fetch("http://localhost:5000/2fa/verify", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
