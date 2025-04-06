@@ -51,7 +51,7 @@ export default async function ClientsPage() {
     <main>
       <div className="w-full h-[425px] sm:h-[450px] p-6 font-ubuntu relative">
         <Image
-          src={`${process.env.NEXT_PUBLIC_API_DOMAIN}${url}`}
+          src={`${url}`}
           alt="Clients Image"
           fill
           priority

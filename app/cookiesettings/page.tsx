@@ -44,7 +44,7 @@ export default async function CookieSettingsPage() {
     <main>
       <div className="w-full h-[425px] sm:h-[450px] p-6 font-ubuntu relative ">
         <Image
-          src={url ? `${process.env.NEXT_PUBLIC_API_DOMAIN}${url}` : '/default-image.png'} // Use default image if url is undefined
+          src={url ? `${url}` : '/default-image.png'} // Use default image if url is undefined
           alt="Background Image"
           fill
           priority

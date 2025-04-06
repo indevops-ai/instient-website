@@ -88,7 +88,7 @@ export default function About() {
       <div className="w-full h-[425px] sm:h-[450px] p-6 font-ubuntu relative">
         {/* Background Image */}
         <Image
-          src={`${apiUrl}${aboutData.Image.url}`} // Dynamically set the full image URL from the API
+          src={`${aboutData.Image.url}`} // Dynamically set the full image URL from the API
           alt="About Us Image"
           fill
           priority
@@ -143,7 +143,7 @@ export default function About() {
             </div>
 
             <Image
-              src={`${apiUrl}${aboutData.Content_Image.url}`}
+              src={`${aboutData.Content_Image.url}`}
               alt="Career Image"
               width={807} // Set a fixed width
               height={300} // Set a fixed height
@@ -183,7 +183,7 @@ export default function About() {
         <div className="flex flex-col sm:flex-row justify-between sm:justify-start items-center relative z-10 mt-24 sm:mt-0 gap-32">
           <div className="relative mt-0 sm:mt-20 w-[90%] sm:w-[407px]">
               <Image
-                src={`${apiUrl}${aboutData.Card1_Image.url}`} // Assuming item has BackgroundImage property
+                src={`${aboutData.Card1_Image.url}`} // Assuming item has BackgroundImage property
                 alt="Career Background"
                 className="absolute top-[25%] sm:top-1/3 left-1/2 sm:left-[50%] w-full h-[300px] bg-gray-200 -translate-y-1/2 -translate-x-1/2 z-0 rounded-md"
                 width={407} // Adjust based on your design
@@ -207,7 +207,7 @@ export default function About() {
 
           <div className="relative w-[90%] sm:w-[407px]">
              <Image
-                src={`${apiUrl}${aboutData.Card2_Image.url}`} // Assuming item has BackgroundImage property
+                src={`${aboutData.Card2_Image.url}`} // Assuming item has BackgroundImage property
                 alt="Career Background"
                 className="absolute top-[25%] sm:top-1/3 left-1/2 sm:left-[50%] w-full h-[300px] bg-gray-200 -translate-y-1/2 -translate-x-1/2 z-0 rounded-md"
                 width={407} // Adjust based on your design
@@ -231,7 +231,7 @@ export default function About() {
 
           <div className="relative mt-0 sm:mt-20 w-[90%] sm:w-[407px]">
               <Image
-                src={`${apiUrl}${aboutData.Card3_Image.url}`} // Assuming item has BackgroundImage property
+                src={`${aboutData.Card3_Image.url}`} // Assuming item has BackgroundImage property
                 alt="Career Background"
                 className="absolute top-[25%] sm:top-1/3 left-1/2 sm:left-[50%] w-full h-[300px] bg-gray-200 -translate-y-1/2 -translate-x-1/2 z-0 rounded-md"
                 width={407} // Adjust based on your design

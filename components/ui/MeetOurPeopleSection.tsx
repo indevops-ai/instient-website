@@ -46,7 +46,7 @@ export function MeetOurPeopleSection() {
               <div className="flex flex-col gap-2 cursor-pointer hover:scale-105 transition-transform">
                 <div className="relative rounded-lg overflow-hidden aspect-square">
                   <Image
-                    src={`${apiUrl}${person.Image.url}`}
+                    src={`${person.Image.url}`}
                     alt={person.Name}
                     width={400}
                     height={400}

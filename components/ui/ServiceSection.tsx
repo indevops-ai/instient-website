@@ -56,7 +56,7 @@ export function ServiceSection() {
           <div key={service.id} className="relative mb-14 sm:mb-14 w-full sm:w-[407px]">
             {/* Background Underlap */}
             <Image
-              src={`${apiUrl}${service.Image_Card.url}`} // Dynamically use API URL
+              src={`${service.Image_Card.url}`} // Dynamically use API URL
               alt="Service Background"
               className="absolute top-[25%] sm:top-1/3 left-1/2 sm:left-[50%] w-full h-[300px] bg-gray-200 -translate-y-1/2 -translate-x-1/2 z-0 rounded-md"
               width={407} // Adjust based on your design

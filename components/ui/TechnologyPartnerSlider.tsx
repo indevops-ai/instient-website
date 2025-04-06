@@ -73,7 +73,7 @@ export default function TechnologyPartnerSlider() {
               <div className="md:w-1/2 flex justify-end h-[300px] md:h-[400px] mt-4 md:mt-0">
                 {banner.banner_image?.url ? (
                   <Image
-                    src={`${process.env.NEXT_PUBLIC_API_DOMAIN}${banner.banner_image.url}`}
+                    src={`${banner.banner_image.url}`}
                     alt={banner.banner_title || 'Technology Partner Banner'}
                     width={700}
                     height={300}

@@ -30,10 +30,10 @@ export default function ResetTwoFactorPage() {
 
       toast({ description: "2FA Reset Successfully. Please scan the new QR Code.", variant: "default" });
       router.push("/2fa/qr");
-    } catch (error: any) {
+    } catch (error) {
       const errorMessage = error instanceof Error ? error.message : "Error resetting 2FA";
       toast({ description: errorMessage, variant: "destructive" });
-    } finally {
+    }finally {
       setLoading(false);
     }
   };

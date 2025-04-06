@@ -68,7 +68,7 @@ export default function Careers() {
       <div className="w-full h-[425px] sm:h-[450px] p-6 font-ubuntu relative">
         {/* Background Image */}
         <Image
-          src={`${apiUrl}${careerData.Image.url}`} // Dynamically set the full image URL from the API
+          src={`${careerData.Image.url}`} // Dynamically set the full image URL from the API
           alt="Career Image"
           fill
           priority

@@ -58,7 +58,7 @@ export function CareerSection() {
                       
                         {/* Background Underlap Image */}
                         <Image
-                            src={`${apiUrl}${item.Image.url}`}
+                            src={`${item.Image.url}`}
                             alt="Career Background"
                             className="absolute top-[25%] sm:top-1/3 left-1/2 sm:left-[50%] w-full h-[300px] bg-gray-200 -translate-y-1/2 -translate-x-1/2 z-0 rounded-md"
                             width={407}

@@ -50,7 +50,7 @@ export default async function LifeAtInstientPage() {
       <div className="w-full h-[425px] sm:h-[450px] p-6 font-ubuntu relative">
         {url && (
           <Image
-            src={`${process.env.NEXT_PUBLIC_API_DOMAIN}${url}`}
+            src={`${url}`}
             alt="Career Image"
             fill
             priority

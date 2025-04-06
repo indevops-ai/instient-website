@@ -53,7 +53,7 @@ export default async function WhyJoinInstientPage() {
     <main>
       <div className="w-full h-[425px] sm:h-[450px] p-6 font-ubuntu relative">
         <Image
-          src={`${process.env.NEXT_PUBLIC_API_DOMAIN}${url}`}
+          src={`${url}`}
           alt="Career Image"
           fill
           priority
@@ -141,7 +141,7 @@ function BannerSection({ title, description, imageUrl }: BannerSectionProps) {
   return (
     <div className="relative w-full min-h-[500px] sm:h-[400px] flex items-center justify-start mb-16 sm:mb-10 px-4 sm:pl-10">
       <Image
-        src={`${process.env.NEXT_PUBLIC_API_DOMAIN}${imageUrl}`}
+        src={`${imageUrl}`}
         alt={title}
         fill
         className="object-cover object-center -z-10"

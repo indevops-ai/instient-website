@@ -60,7 +60,7 @@ export default function MeetOurPeople() {
     <main>
       <div className="w-full h-[425px] sm:h-[450px] p-6 font-ubuntu relative">
         <Image
-          src={`${apiUrl}${meetOurPeopleData.Image.url}`}
+          src={`${meetOurPeopleData.Image.url}`}
           alt="Meet Our People Image"
           fill
           priority

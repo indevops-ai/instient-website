@@ -56,7 +56,7 @@ export default async function TechnologyPartnerPage() {
     <main>
       <div className="w-full h-[425px] sm:h-[450px]  p-6 font-ubuntu relative">
         <Image
-          src={`${process.env.NEXT_PUBLIC_API_DOMAIN}${url}`} // Dynamically set the full image URL from the API
+          src={`${url}`} // Dynamically set the full image URL from the API
           alt="Career Image"
           fill
           priority

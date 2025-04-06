@@ -62,7 +62,7 @@ export default function Services() {
       <div className="w-full h-[425px] sm:h-[450px] p-6 font-ubuntu relative">
         {/* Background Image */}
         <Image 
-          src={`${apiUrl}${serviceData.Image.url}`} // Dynamically use API URL
+          src={`${serviceData.Image.url}`} // Dynamically use API URL
           alt="Service Image"
           fill
           priority

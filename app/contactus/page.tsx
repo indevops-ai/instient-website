@@ -71,7 +71,7 @@ export default function Contact() {
     <main>
       <div className="w-full h-[425px] sm:h-[450px] p-6 font-ubuntu relative">
         <Image 
-          src={`${process.env.NEXT_PUBLIC_API_DOMAIN}${contactData.Image.url}`} 
+          src={`${contactData.Image.url}`} 
           alt="Contact Page Banner"
           fill
           priority

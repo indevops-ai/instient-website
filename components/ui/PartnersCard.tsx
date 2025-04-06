@@ -45,7 +45,7 @@ export default function PartnersCard() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {partners.map((partner, index) => { 
           const imageUrl = partner.logo?.url || partner.logo?.formats?.thumbnail?.url;
-          const fullImageUrl = imageUrl ? `${process.env.NEXT_PUBLIC_API_DOMAIN}${imageUrl}` : '/placeholder.jpg';
+          const fullImageUrl = imageUrl ? `${imageUrl}` : '/placeholder.jpg';
 
           return (
             <div key={index} className="flex items-center mx-6 bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200">

@@ -61,7 +61,7 @@ export default function Blog() {
     <main>
       <div className="w-full h-[425px] sm:h-[450px] p-6 font-ubuntu relative">
         <Image
-          src={`${process.env.NEXT_PUBLIC_API_DOMAIN}${blogData.Image.url}`}
+          src={`${blogData.Image.url}`}
           alt="Blog Image"
           fill
           priority

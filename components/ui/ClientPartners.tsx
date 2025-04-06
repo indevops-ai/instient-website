@@ -43,7 +43,7 @@ export default function ClientPartners() {
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 px-6">
         {clientPartners.map((partner, index) => { 
           const imageUrl = partner.logo?.url || partner.logo?.formats?.thumbnail?.url;
-          const fullImageUrl = imageUrl ? `${process.env.NEXT_PUBLIC_API_DOMAIN}${imageUrl}` : '/placeholder.jpg';
+          const fullImageUrl = imageUrl ? `${imageUrl}` : '/placeholder.jpg';
 
           return (
             <div key={index} className="flex justify-center items-center bg-gray-600 shadow-md rounded-lg border border-gray-200 p-4">

@@ -69,7 +69,7 @@ export default async function BlogSlugPage({
     <main>
       <div className="w-full h-[425px] sm:h-[450px] p-6 font-ubuntu relative">
         <Image
-          src={url ? `${process.env.NEXT_PUBLIC_API_DOMAIN}${url}` : "/default-image.png"}
+          src={url ? `${url}` : "/default-image.png"}
           alt="Background Image"
           fill
           priority

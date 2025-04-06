@@ -94,7 +94,7 @@ export default function HomeSlider() {
               <div className="md:w-1/2 flex justify-end min-h-[300px] md:h-[400px] w-full">
                 {banner.banner_image?.url ? (
                   <Image
-                    src={`${apiDomain}${banner.banner_image.url}`}
+                    src={`${banner.banner_image.url}`}
                     alt={banner.banner_title || "Home Banner"}
                     width={700}
                     height={400}
