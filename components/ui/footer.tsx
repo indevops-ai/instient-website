@@ -9,17 +9,18 @@ export function Footer() {
   const [hoveredIcon, setHoveredIcon] = useState<string | null>(null);
   const [tooltipPosition, setTooltipPosition] = useState(0);
 
+  const isProd = process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_VERCEL_ENV !== "preview";
+
   const footerRoutes = [
     { name: "Services", href: "/services" },
-    //{ name: "Case Studies", href: "/casestudies" },
     { name: "Clients", href: "/clients" },
     { name: "Careers", href: "/careers" },
-    { name: "Support", href: "https://support.instient.ai/portal/en/home" },
-    // { name: "News", href: "/news" },
+    ...(isProd ? [{ name: "Support", href: "https://support.instient.ai/portal/en/home" }] : []),
+    { name: "Blogs", href: "/blogs" },
     { name: "About us", href: "/aboutus" },
     { name: "Contact us", href: "/contactus" },
   ];
-
+  
   const policyLinks = [
     { name: "Cookie Policy", href: "/cookiepolicy" },
     { name: "Cookie Settings", href: "/cookiesettings" },

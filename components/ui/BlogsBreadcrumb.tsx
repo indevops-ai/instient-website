@@ -9,59 +9,62 @@ interface Subpage {
   href: string;
 }
 
-interface ServiceItem {
-    Service_Title: string;
-    slug: string;
+interface BlogItem {
+  Title: string;
+  slug: string;
 }
 
-async function fetchServices(): Promise<Subpage[]> {
+async function fetchBlogs(): Promise<Subpage[]> {
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
   const apiUrl = process.env.NEXT_PUBLIC_API_DOMAIN;
 
-  const response = await fetch(`${apiUrl}/api/service-instients?populate=*`, {
-    headers: {
-      Authorization: `Bearer ${apiToken}`,
-    },
-    cache: "no-store",
-  });
+  const response = await fetch(
+    `${apiUrl}/api/blogs?populate=*`,
+    {
+      headers: {
+        Authorization: `Bearer ${apiToken}`,
+      },
+      cache: "no-store",
+    }
+  );
 
   if (!response.ok) {
-    console.error("Failed to fetch services:", response.status);
+    console.error("Failed to fetch blogs:", response.status);
     return [];
   }
 
   const data = await response.json();
 
   return (
-    data?.data?.map((service: ServiceItem) => ({
-      name: service.Service_Title,
-      href: `/services/${service.slug}`,
+    data?.data?.map((blog: BlogItem) => ({
+      name: blog.Title,
+      href: `/blogs/${blog.slug}`,
     })) || []
   );
 }
 
-export default function ServicesBreadcrumb() {
-  const [services, setServices] = useState<Subpage[]>([]);
+export default function BlogBreadcrumb() {
+  const [blogs, setBlogs] = useState<Subpage[]>([]);
 
   useEffect(() => {
-    async function loadServices() {
-      const serviceData = await fetchServices();
-      setServices(serviceData);
+    async function loadBlogs() {
+      const blogData = await fetchBlogs();
+      setBlogs(blogData);
     }
-    loadServices();
+    loadBlogs();
   }, []);
 
   return (
     <div className="relative group cursor-pointer">
       <ChevronDown className="w-4 h-4 ml-1" />
       <div className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2 z-50 opacity-0 group-hover:opacity-100 transition-opacity">
-        {services.map((service) => (
+        {blogs.map((blogItem) => (
           <Link
-            key={service.href}
-            href={service.href}
+            key={blogItem.href}
+            href={blogItem.href}
             className="block px-4 py-2 text-sm text-black hover:bg-gray-200"
           >
-            {service.name}
+            {blogItem.name}
           </Link>
         ))}
       </div>

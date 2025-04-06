@@ -12,9 +12,10 @@ export const metadata: Metadata = {
 
 async function fetchClientsPageData() {
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
+  const apiUrl = process.env.NEXT_PUBLIC_API_DOMAIN;
 
   const response = await fetch(
-    `https://api.instient.ai/api/clientspage?populate=*`, // Replace with your actual endpoint
+    `${apiUrl}/api/clientspage?populate=*`, // Replace with your actual endpoint
     {
       headers: {
         Authorization: `Bearer ${apiToken}`,
@@ -50,7 +51,7 @@ export default async function ClientsPage() {
     <main>
       <div className="w-full h-[425px] sm:h-[450px] p-6 font-ubuntu relative">
         <Image
-          src={`https://api.instient.ai${url}`}
+          src={`${url}`}
           alt="Clients Image"
           fill
           priority

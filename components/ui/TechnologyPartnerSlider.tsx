@@ -20,7 +20,8 @@ interface Banner {
 
 // Fetch banners from API
 async function fetchBanners(): Promise<Banner[]> {
-  const response = await fetch('https://api.instient.ai/api/technologypartnerbanners?populate=*', {
+  const apiUrl = process.env.NEXT_PUBLIC_API_DOMAIN;  
+  const response = await fetch(`${apiUrl}/api/technologypartnerbanners?populate=*`, {
     headers: { Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}` },
     cache: 'no-store',
   });
@@ -72,7 +73,7 @@ export default function TechnologyPartnerSlider() {
               <div className="md:w-1/2 flex justify-end h-[300px] md:h-[400px] mt-4 md:mt-0">
                 {banner.banner_image?.url ? (
                   <Image
-                    src={`https://api.instient.ai${banner.banner_image.url}`}
+                    src={`${banner.banner_image.url}`}
                     alt={banner.banner_title || 'Technology Partner Banner'}
                     width={700}
                     height={300}

@@ -19,6 +19,7 @@ interface CareerItem {
 export function CareerSection() {
     const [careerData, setCareerData] = useState<CareerItem[]>([]);
     const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
+    const apiUrl = process.env.NEXT_PUBLIC_API_DOMAIN; // Use API base URL from .env
 
     useEffect(() => {
         const myHeaders = new Headers();
@@ -30,13 +31,13 @@ export function CareerSection() {
             redirect: "follow" as RequestRedirect,
         };
 
-        fetch("https://api.instient.ai/api/career-instients?populate=*", requestOptions)
+        fetch(`${apiUrl}/api/career-instients?populate=*`, requestOptions)
             .then((response) => response.json())
             .then((result) => {
                 setCareerData(result.data);
             })
             .catch((error) => console.error("Error fetching career data:", error));
-    }, [apiToken]);
+    }, [apiToken, apiUrl]);
 
     return (
         <div className="py-10 font-ubuntu relative sm:mt-0 flex flex-wrap justify-center gap-20">
@@ -57,7 +58,7 @@ export function CareerSection() {
                       
                         {/* Background Underlap Image */}
                         <Image
-                            src={`https://api.instient.ai${item.Image.url}`}
+                            src={`${item.Image.url}`}
                             alt="Career Background"
                             className="absolute top-[25%] sm:top-1/3 left-1/2 sm:left-[50%] w-full h-[300px] bg-gray-200 -translate-y-1/2 -translate-x-1/2 z-0 rounded-md"
                             width={407}

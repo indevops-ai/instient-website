@@ -19,6 +19,9 @@ interface CareerItem {
 export function CareerPathSection() {
   const [careerData, setCareerData] = useState<CareerItem[]>([]);
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
+  const apiUrl = process.env.NEXT_PUBLIC_API_DOMAIN; // Use API base URL from .env
+
+  const isDisabled = process.env.NODE_ENV !== "production" || process.env.NEXT_PUBLIC_VERCEL_ENV === "preview";
 
   useEffect(() => {
     const myHeaders = new Headers();
@@ -30,13 +33,13 @@ export function CareerPathSection() {
         redirect: "follow" as RequestRedirect, // Ensure proper type
     };
 
-    fetch("https://api.instient.ai/api/career-paths?populate=*", requestOptions)
+    fetch(`${apiUrl}/api/career-paths?populate=*`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setCareerData(result.data);
       })
       .catch((error) => console.error("Error fetching career data:", error));
-  }, [apiToken]);
+  }, [apiToken, apiUrl]);
 
   return (
     <div className="py-10 font-ubuntu relative sm:mt-0">
@@ -46,7 +49,7 @@ export function CareerPathSection() {
         <div key={item.id} className="relative mb-14 sm:mb-14 w-full sm:w-[407px]">
           {/* Background Underlap Image */}
           <Image
-            src={`https://api.instient.ai${item.Image.url}`} // Assuming item has BackgroundImage property
+            src={`${item.Image.url}`} // Assuming item has BackgroundImage property
             alt="Career Background"
             className="absolute top-[25%] sm:top-1/3 left-1/2 sm:left-[50%] w-full h-[300px] bg-gray-200 -translate-y-1/2 -translate-x-1/2 z-0 rounded-md"
             width={407} // Adjust based on your design
@@ -61,14 +64,24 @@ export function CareerPathSection() {
               </p>
             </CardContent>
             <CardFooter className="flex justify-end sm:py-6 pb-6">
-              <Link href="https://careers.instient.ai/jobs/Careers" passHref>
-              <Button className="text-black border-black rounded-full flex items-center font-ubuntu gap-2 
-                  hover:bg-gray-200  hover:border-gray-300 transition-all duration-300 ease-in-out transform hover:scale-105">
+            {isDisabled ? (
+              <Button 
+                disabled 
+                className="text-gray-400 border-gray-300 cursor-not-allowed rounded-full flex items-center font-ubuntu gap-2">
                 <ArrowRight className="w-4 h-4" />
               </Button>
+            ) : (
+              <Link href="https://careers.instient.ai/jobs/Careers" passHref>
+                <Button className="text-black border-black rounded-full flex items-center font-ubuntu gap-2 
+                    hover:bg-gray-200 hover:border-gray-300 transition-all duration-300 ease-in-out transform hover:scale-105">
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
               </Link>
+            )}
+
             </CardFooter>
           </Card>
+
         </div>
       ))}
     </div>

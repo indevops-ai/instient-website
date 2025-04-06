@@ -17,6 +17,7 @@ interface PeopleItem {
 export function MeetOurPeopleSection() {
   const [peopleData, setPeopleData] = useState<PeopleItem[]>([]);
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
+  const apiUrl = process.env.NEXT_PUBLIC_API_DOMAIN; // Use API base URL from .env
 
   useEffect(() => {
     const myHeaders = new Headers();
@@ -28,13 +29,13 @@ export function MeetOurPeopleSection() {
       redirect: "follow" as RequestRedirect,
     };
 
-    fetch("https://api.instient.ai/api/meetourpeople-instients?populate=*", requestOptions)
+    fetch(`${apiUrl}/api/meetourpeople-instients?populate=*`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setPeopleData(result.data);
       })
       .catch((error) => console.error("Error fetching people data:", error));
-  }, [apiToken]);
+  }, [apiToken, apiUrl]);
 
   return (
     <section className="w-full py-12 md:py-2">
@@ -45,7 +46,7 @@ export function MeetOurPeopleSection() {
               <div className="flex flex-col gap-2 cursor-pointer hover:scale-105 transition-transform">
                 <div className="relative rounded-lg overflow-hidden aspect-square">
                   <Image
-                    src={`https://api.instient.ai${person.Image.url}`}
+                    src={`${person.Image.url}`}
                     alt={person.Name}
                     width={400}
                     height={400}

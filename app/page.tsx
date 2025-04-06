@@ -39,12 +39,12 @@ export default function Home() {
   const [homeData, setHomeData] = useState<HomeData | null>(null);
   const pathname = usePathname();
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
-
+  const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN;
   useEffect(() => {
     const fetchHomeData = async () => {
-      if (!apiToken) return;
+      if (!apiToken || !apiDomain) return;
       try {
-        const response = await fetch("https://api.instient.ai/api/homepage?populate=*", {
+        const response = await fetch(`${apiDomain}/api/homepage?populate=*`, {
           headers: {
             Authorization: `Bearer ${apiToken}`,
           },
@@ -60,7 +60,7 @@ export default function Home() {
     };
 
     fetchHomeData();
-  }, [pathname,apiToken]);
+  }, [pathname, apiToken, apiDomain]);
 
   if (!homeData) {
     return (
@@ -88,7 +88,7 @@ export default function Home() {
               playsInline
               className="absolute top-0 left-0 w-full h-full object-cover -z-10"
             ></video>
-
+                
             {/* Dark overlay for text readability */}
             <div className="absolute top-0 left-0 w-full h-full bg-black/50 -z-10"></div>
 
