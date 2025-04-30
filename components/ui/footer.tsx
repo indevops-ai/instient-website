@@ -44,7 +44,7 @@ export function Footer() {
         <div className="container mx-auto flex flex-col lg:flex-row justify-start lg:justify-between items-start">
           <Link href="/" >
             <Image
-              src="/Instient_Logo2.svg"
+              src="/Instient Logo2.svg"
               alt="Logo"
               width={150}
               height={150}
