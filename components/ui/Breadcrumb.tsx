@@ -46,7 +46,10 @@ export default function Breadcrumb() {
         formatBreadcrumbText(segments[segments.length - 2])
       : "Home";
 
+  //const isDisabled = process.env.NODE_ENV !== "development" || process.env.NEXT_PUBLIC_VERCEL_ENV === "preview";
+
   const isDisabled = process.env.NODE_ENV !== "production" || process.env.NEXT_PUBLIC_VERCEL_ENV === "preview";
+
 
   return (
     <>
