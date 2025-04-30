@@ -53,7 +53,7 @@ export function Navbar({ className, ...props }: React.HTMLAttributes<HTMLDivElem
         >
           {/* Logo Section */}
           <Link href="/" className="flex items-center space-x-4 px-4">
-            <Image src="/Instient Logo2.svg" alt="Logo" width={100} height={50} priority />
+            <Image src="/Instient_Logo2.svg" alt="Logo" width={100} height={50} priority />
           </Link>
 
           {/* Hamburger Menu Button for Mobile */}
