@@ -124,7 +124,7 @@ export default function GetInTouch({ isOpen, onClose }: GetInTouchProps): JSX.El
         <div className="w-full space-y-3">
           <DialogHeader className="flex-row items-center justify-between space-x-4 px-3 mt-4">
             <DialogTitle className="text-lg font-medium">Get in touch</DialogTitle>
-            <Image src="/Instient Logo.svg" alt="Logo" width={100} height={100} priority />
+            <Image src="/Instient Logo2.svg" alt="Logo" width={100} height={100} priority />
           </DialogHeader>
           <div className="px-3">
             <form className="space-y-3 pb-6" onSubmit={handleSubmit}>

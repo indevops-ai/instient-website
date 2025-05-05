@@ -22,6 +22,16 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Instient",
   description: "Instient - Your platform for something amazing!",
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any', type: 'image/x-icon' },
+      { url: '/favicon-32x32.png', type: 'image/png', sizes: '32x32' },
+      { url: '/favicon-16x16.png', type: 'image/png', sizes: '16x16' },
+      { url: '/favicon-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/favicon-512x512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
 };
 
 export default function RootLayout({
@@ -79,8 +89,11 @@ export default function RootLayout({
         )}
 
         <Toaster />
-        <Navbar />
-        <div className="sticky top-0 left-0 right-0 z-50">
+        {/* Navbar with Sticky Position */}
+        <Navbar className="sticky top-0 left-0 right-0 z-50 bg-white shadow-md" />
+
+        {/* Breadcrumb with Sticky Position */}
+        <div className="sticky top-[60px] left-0 right-0 z-40 bg-white shadow-md">
           <Breadcrumb />
         </div>
         <main className="relative mt-0">
