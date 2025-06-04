@@ -48,8 +48,9 @@ export default function Breadcrumb() {
 
   //const isDisabled = process.env.NODE_ENV !== "development" || process.env.NEXT_PUBLIC_VERCEL_ENV === "preview";
 
-  const isDisabled = process.env.NODE_ENV !== "production" || process.env.NEXT_PUBLIC_VERCEL_ENV === "preview";
-
+  const isDisabled =
+    process.env.NODE_ENV !== "production" ||
+    process.env.NEXT_PUBLIC_VERCEL_ENV === "preview";
 
   return (
     <>
@@ -62,7 +63,8 @@ export default function Breadcrumb() {
           {segments.length > 0 && <ChevronRight className="w-5 h-5" />}
           {segments.map((segment, index) => {
             const href = "/" + segments.slice(0, index + 1).join("/");
-            const label = routeMap[segment.toLowerCase()] || formatBreadcrumbText(segment);
+            const label =
+              routeMap[segment.toLowerCase()] || formatBreadcrumbText(segment);
 
             return (
               <div key={href} className="relative flex items-center space-x-2">
@@ -76,7 +78,9 @@ export default function Breadcrumb() {
                 {segment === "aboutus" && <AboutUsBreadcrumb />}
                 {segment === "careers" && <CareersBreadcrumb />}
                 {segment === "career-path" && <CareerPathBreadcrumb />}
-                {index < segments.length - 1 && <ChevronRight className="w-5 h-5" />}
+                {index < segments.length - 1 && (
+                  <ChevronRight className="w-5 h-5" />
+                )}
               </div>
             );
           })}
@@ -99,9 +103,11 @@ export default function Breadcrumb() {
           aria-label="Open contact dialog"
           disabled={isDisabled}
           className={`px-4 py-2 w-full sm:w-auto rounded-md flex items-center justify-center text-sm font-medium shadow-md transition-all duration-300 ease-out overflow-hidden relative group 
-            ${isDisabled 
-              ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-              : "bg-gray-300 text-black hover:shadow-lg"}`}
+            ${
+              isDisabled
+                ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                : "bg-gray-300 text-black hover:shadow-lg"
+            }`}
         >
           <span className="absolute inset-0 w-0 bg-gray-400 transition-all duration-300 ease-out group-hover:w-full origin-left"></span>
           <span className="relative z-10 flex items-center">

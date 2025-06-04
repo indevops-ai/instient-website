@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 // Define the type for a banner object
 interface Banner {
@@ -31,17 +31,17 @@ async function fetchBanners(): Promise<Banner[]> {
     console.error("API domain or token is missing.");
     return [];
   }
-  
+
   const response = await fetch(`${apiDomain}/api/homebanners?populate=*`, {
     headers: { Authorization: `Bearer ${apiToken}` },
-    cache: 'no-store',
+    cache: "no-store",
   });
-  
+
   if (!response.ok) {
     console.error("Failed to fetch banners.");
     return [];
   }
-  
+
   const data = await response.json();
   return data?.data ?? [];
 }
@@ -64,8 +64,8 @@ export default function HomeSlider() {
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         navigation={{
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
         }}
         pagination={{ clickable: true }}
         autoplay={{ delay: 5000 }}
@@ -80,13 +80,15 @@ export default function HomeSlider() {
                   {banner.banner_title || "Welcome to Our Platform"}
                 </h2>
                 <p className="text-lg mb-8">
-                  {banner.banner_description || "Discover amazing features and services."}
+                  {banner.banner_description ||
+                    "Discover amazing features and services."}
                 </p>
-                <Link href={`/${banner.slug}`}>
+                <Link href={`${banner.slug}`}>
                   <Button className="relative text-white border-white border-[1.5px] rounded-full flex items-center font-ubuntu gap-2 overflow-hidden transition-all duration-300 ease-out group">
                     <span className="absolute inset-0 w-0 bg-gray-400 transition-all duration-300 ease-out group-hover:w-full"></span>
                     <span className="relative z-10 flex items-center gap-2 hover:text-white hover:border-gray-300">
-                      {banner.banner_button_text || "Explore Now"} <ArrowRight className="w-4 h-4" />
+                      {banner.banner_button_text || "Explore Now"}{" "}
+                      <ArrowRight className="w-4 h-4" />
                     </span>
                   </Button>
                 </Link>

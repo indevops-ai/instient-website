@@ -24,13 +24,13 @@ export const metadata: Metadata = {
   description: "Instient - Your platform for something amazing!",
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: 'any', type: 'image/x-icon' },
-      { url: '/favicon-32x32.png', type: 'image/png', sizes: '32x32' },
-      { url: '/favicon-16x16.png', type: 'image/png', sizes: '16x16' },
-      { url: '/favicon-192x192.png', sizes: '192x192', type: 'image/png' },
-      { url: '/favicon-512x512.png', sizes: '512x512', type: 'image/png' },
+      { url: "/favicon.ico", sizes: "any", type: "image/x-icon" },
+      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+      { url: "/favicon-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/favicon-512x512.png", sizes: "512x512", type: "image/png" },
     ],
-    apple: '/apple-touch-icon.png',
+    apple: "/apple-touch-icon.png",
   },
 };
 
@@ -75,7 +75,9 @@ export default function RootLayout({
         )}
       </head>
 
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         {/* Google Tag Manager (noscript) - Load only in live production */}
         {isLive && (
           <noscript>
@@ -93,13 +95,13 @@ export default function RootLayout({
         <Navbar className="sticky top-0 left-0 right-0 z-50 bg-white shadow-md" />
 
         {/* Breadcrumb with Sticky Position */}
-        <div className="sticky top-[60px] left-0 right-0 z-40 bg-white shadow-md">
+        <div className="sticky top-0 left-0 right-0 z-50">
           <Breadcrumb />
         </div>
         <main className="relative mt-0">
           <ClientLayout>{children}</ClientLayout>
         </main>
-        
+
         {/* Zoho Chat - Only in Live Production */}
         {isLive && <ZohoChat />}
       </body>
