@@ -35,22 +35,36 @@ async function fetchServiceData(slug: string) {
   }
 }
 
-export async function generateMetadata({ params }: { params: Promise< { slug: string } >}): Promise<Metadata> {
-  const { slug }= await params;
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
   const serviceData = await fetchServiceData(slug);
 
   return {
-    title: serviceData ? `${serviceData.Service_Title} - Instient` : "Service Not Found - Instient",
-    description: serviceData?.Service_Description || "The requested service does not exist.",
+    title: serviceData
+      ? `${serviceData.Service_Title} - Instient`
+      : "Service Not Found - Instient",
+    description:
+      serviceData?.Service_Description ||
+      "The requested service does not exist.",
   };
 }
 
-export default async function ServiceSlugPage({ params }: { params: Promise< { slug: string }> }) {
-  const { slug }= await params;
+export default async function ServiceSlugPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
   const serviceData = await fetchServiceData(slug);
 
   if (!serviceData) {
-    return <p className="text-center mt-20">Service not found or incomplete data.</p>;
+    return (
+      <p className="text-center mt-20">Service not found or incomplete data.</p>
+    );
   }
 
   const {
@@ -82,7 +96,9 @@ export default async function ServiceSlugPage({ params }: { params: Promise< { s
         <div className="my-64 sm:my-64 relative z-10">
           <Card className="lg:w-[600px] sm:w-[650px] bg-gradient-to-b from-[#3c83c1] to-[#459ae5] text-white font-ubuntu opacity-90">
             <CardContent>
-              <p className="text-4xl py-24 sm:py-20 font-ubuntu font-medium">{Service_Title}</p>
+              <p className="text-4xl py-24 sm:py-20 font-ubuntu font-medium">
+                {Service_Title}
+              </p>
             </CardContent>
           </Card>
         </div>
@@ -92,33 +108,72 @@ export default async function ServiceSlugPage({ params }: { params: Promise< { s
         <p className="text-2xl px-6 font-ubuntu">{Service_Description}</p>
       </div>
 
-      <WhatMakesUsStandOut title={Service_Content1_Title} cards={content1Cards} />
+      <WhatMakesUsStandOut
+        title={Service_Content1_Title}
+        cards={content1Cards}
+      />
 
       <div className="sm:px-6 px-3 py-4 mt-10 sm:mt-10 sm:mb-10 mb-10">
-        <h2 className="text-3xl font-medium font-ubuntu sm:text-left px-6">{Service_Content2_Title}</h2>
+        <h2 className="text-3xl font-medium font-ubuntu sm:text-left px-6">
+          {Service_Content2_Title}
+        </h2>
         <div className="container sm:p-6 py-6 px-3 font-ubuntu mt-10 sm:mt-2 w-[90%] sm:w-[60%]">
-          <p className="text-xl px-3 sm:p-0 font-ubuntu">{Service_Content2_Description}</p>
+          <p className="text-xl px-3 sm:p-0 font-ubuntu">
+            {Service_Content2_Description}
+          </p>
         </div>
       </div>
 
-      <OurProcess title={Service_Content3_Title} processDetails={processDetails} />
+      {serviceData.Service_Content4_Title &&
+        serviceData.Service_Content4_Description && (
+          <div className="sm:px-6 px-3 py-4 mt-10 sm:mt-0 sm:mb-10 mb-10">
+            <h2 className="text-3xl font-medium font-ubuntu sm:text-left px-6">
+              {serviceData.Service_Content4_Title}
+            </h2>
+            <div className="container sm:p-6 py-6 px-3 font-ubuntu mt-10 sm:mt-2 w-[90%] sm:w-[60%]">
+              <p className="text-xl px-3 sm:p-0 font-ubuntu">
+                {serviceData.Service_Content4_Description}
+              </p>
+            </div>
+          </div>
+        )}
+
+      <OurProcess
+        title={Service_Content3_Title}
+        processDetails={processDetails}
+      />
 
       <Footer />
     </main>
   );
 }
 
-function WhatMakesUsStandOut({ title, cards }: { title: string; cards: CardData[] }) {
+function WhatMakesUsStandOut({
+  title,
+  cards,
+}: {
+  title: string;
+  cards: CardData[];
+}) {
   return (
     <div className="sm:px-6 px-3 py-4 mt-10 sm:mt-10 sm:mb-16 mb-10">
-      <h2 className="text-3xl font-medium font-ubuntu sm:text-left px-6">{title}</h2>
+      <h2 className="text-3xl font-medium font-ubuntu sm:text-left px-6">
+        {title}
+      </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-8">
         {cards.map((card, index) => (
-          <Card key={index} className="py-4 shadow-xl rounded-lg bg-white border-white p-6 w-[95%] sm:w-[100%] mx-auto">
-            <h3 className="font-ubuntu text-xl font-semibold mb-2 mt-2">{card.title}</h3>
+          <Card
+            key={index}
+            className="py-4 shadow-xl rounded-lg bg-white border-white p-6 w-[95%] sm:w-[100%] mx-auto"
+          >
+            <h3 className="font-ubuntu text-xl font-semibold mb-2 mt-2">
+              {card.title}
+            </h3>
             <div className="border-b-4 border-blue-500 w-12 mb-4"></div>
-            <CardContent className="text-black font-ubuntu text-base p-0">{card.content}</CardContent>
+            <CardContent className="text-black font-ubuntu text-base p-0">
+              {card.content}
+            </CardContent>
           </Card>
         ))}
       </div>
@@ -126,16 +181,26 @@ function WhatMakesUsStandOut({ title, cards }: { title: string; cards: CardData[
   );
 }
 
-function OurProcess({ title, processDetails }: { title: string; processDetails: CardData[] }) {
+function OurProcess({
+  title,
+  processDetails,
+}: {
+  title: string;
+  processDetails: CardData[];
+}) {
   return (
     <div className="px-6 py-4 mt-10 sm:mt-10 sm:mb-10">
-      <h2 className="text-3xl font-ubuntu font-medium px-4 sm:text-left sm:px-6 sm:mb-6 mb-4">{title}</h2>
+      <h2 className="text-3xl font-ubuntu font-medium px-4 sm:text-left sm:px-6 sm:mb-6 mb-4">
+        {title}
+      </h2>
 
       <div className="grid grid-cols-1 gap-6">
         {processDetails.map((detail, index) => (
           <div key={index} className="p-6 border-t border-gray-300 font-ubuntu">
             <p className="text-lg font-ubuntu mb-1">{detail.title}</p>
-            <h3 className="text-xl font-ubuntu font-medium mb-1">{detail.description}</h3>
+            <h3 className="text-xl font-ubuntu font-medium mb-1">
+              {detail.description}
+            </h3>
             <p className="text-sm font-ubuntu mb-1">{detail.content}</p>
           </div>
         ))}
@@ -150,7 +215,10 @@ interface CardData {
   description: string;
 }
 
-function extractCardData(data: { [key: string]: string | undefined }, keyPrefix: string): CardData[] {
+function extractCardData(
+  data: { [key: string]: string | undefined },
+  keyPrefix: string
+): CardData[] {
   const cards: CardData[] = [];
   let index = 1;
 

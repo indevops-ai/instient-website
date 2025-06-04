@@ -61,7 +61,7 @@ export default function Services() {
     <main>
       <div className="w-full h-[425px] sm:h-[450px] p-6 font-ubuntu relative">
         {/* Background Image */}
-        <Image 
+        <Image
           src={`${serviceData.Image.url}`} // Dynamically use API URL
           alt="Service Image"
           fill
@@ -102,7 +102,9 @@ export default function Services() {
       </div>
 
       <div className="sm:px-6 px-3 py-4 mt-10 sm:mt-10 sm:mb-16 mb-10">
-        <h2 className="text-3xl font-ubuntu sm:text-left px-6 sm:mb-16">{serviceData.Content_Title}</h2>
+        <h2 className="text-3xl font-ubuntu sm:text-left px-6 ">
+          {serviceData.Content_Title}
+        </h2>
         <ServiceSection />
       </div>
 

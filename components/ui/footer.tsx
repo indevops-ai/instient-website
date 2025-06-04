@@ -9,18 +9,27 @@ export function Footer() {
   const [hoveredIcon, setHoveredIcon] = useState<string | null>(null);
   const [tooltipPosition, setTooltipPosition] = useState(0);
 
-  const isProd = process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_VERCEL_ENV !== "preview";
+  const isProd =
+    process.env.NODE_ENV === "production" &&
+    process.env.NEXT_PUBLIC_VERCEL_ENV !== "preview";
 
   const footerRoutes = [
     { name: "Services", href: "/services" },
     { name: "Clients", href: "/clients" },
     { name: "Careers", href: "/careers" },
-    ...(isProd ? [{ name: "Support", href: "https://support.instient.ai/portal/en/home" }] : []),
+    ...(isProd
+      ? [
+          {
+            name: "Support",
+            href: "https://support.instient.ai/portal/en/home",
+          },
+        ]
+      : []),
     { name: "Blogs", href: "/blogs" },
     { name: "About us", href: "/aboutus" },
     { name: "Contact us", href: "/contactus" },
   ];
-  
+
   const policyLinks = [
     { name: "Cookie Policy", href: "/cookiepolicy" },
     { name: "Cookie Settings", href: "/cookiesettings" },
@@ -29,12 +38,38 @@ export function Footer() {
   ];
 
   const socialLinks = [
-    { name: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/company/instient" },
-    { name: "Instagram", icon: Instagram, href: "https://www.instagram.com/instientllc" },
-    { name: "YouTube", icon: Youtube, href: "https://www.youtube.com/@Instient" },
-    { name: "Facebook", icon: Facebook, href: "https://www.facebook.com/instient" },
-    { name: "Glassdoor", icon: "/glassdoor.svg", href: "https://www.glassdoor.co.in/Overview/Working-at-Instient-EI_IE9821788.11,19.htm", isImage: true },
-    { name: "Twitter", icon: "/twitter.svg", href: "https://x.com/instient", isImage: true },
+    {
+      name: "LinkedIn",
+      icon: Linkedin,
+      href: "https://www.linkedin.com/company/instient",
+    },
+    {
+      name: "Instagram",
+      icon: Instagram,
+      href: "https://www.instagram.com/instientllc",
+    },
+    {
+      name: "YouTube",
+      icon: Youtube,
+      href: "https://www.youtube.com/@Instient",
+    },
+    {
+      name: "Facebook",
+      icon: Facebook,
+      href: "https://www.facebook.com/instient",
+    },
+    {
+      name: "Glassdoor",
+      icon: "/glassdoor.svg",
+      href: "https://www.glassdoor.co.in/Overview/Working-at-Instient-EI_IE9821788.11,19.htm",
+      isImage: true,
+    },
+    {
+      name: "Twitter",
+      icon: "/twitter.svg",
+      href: "https://x.com/instient",
+      isImage: true,
+    },
   ];
 
   return (
@@ -42,32 +77,59 @@ export function Footer() {
       {/* Middle Section - Info & Links */}
       <div className="bg-gray-50 text-gray-800 py-6 px-6 text-left lg:text-left">
         <div className="container mx-auto flex flex-col lg:flex-row justify-start lg:justify-between items-start">
-          <Link href="/" >
-            <Image
-              src="/Instient Logo2.svg"
-              alt="Logo"
-              width={150}
-              height={150}
-              className="mx-auto mt-2 mb-4 lg:mx-0"
-            />
-          </Link>
+          <div className="flex flex-col items-start lg:items-start">
+            <Link href="/">
+              <Image
+                src="/Instient Logo2.svg"
+                alt="Logo"
+                width={150}
+                height={150}
+                className="mx-auto mt-2 mb-4 lg:mx-0"
+              />
+            </Link>
+            <Link
+              href="https://nasscom.in/members-listing"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div className="rounded-md inline-flex items-center space-x-3   cursor-pointer">
+                <div className="text-xl font-semibold font-ubuntu text-red-700 tracking-wide">
+                  Trusted by
+                </div>
+                <Image
+                  src="/deep-red-nasscom.png"
+                  alt="NASSCOM Logo"
+                  width={120}
+                  height={60}
+                />
+              </div>
+            </Link>
+          </div>
+
           <div className="flex flex-col lg:flex-row mt-10 lg:mt-0">
             <div>
               <ul className="text-base">
                 {footerRoutes.map((route) => (
                   <li key={route.href} className="mt-2 mb-2">
-                    <Link href={route.href}  className="hover:text-primary transition">
+                    <Link
+                      href={route.href}
+                      className="hover:text-primary transition"
+                    >
                       {route.name}
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
+
             <div className="mt-8 lg:mt-0 lg:px-72">
               <ul className="text-base">
                 {policyLinks.map((policy) => (
                   <li key={policy.href} className="mt-2 mb-2">
-                    <Link href={policy.href} className="hover:text-primary transition">
+                    <Link
+                      href={policy.href}
+                      className="hover:text-primary transition"
+                    >
                       {policy.name}
                     </Link>
                   </li>
@@ -98,7 +160,11 @@ export function Footer() {
                     className="p-2 bg-gray-200 rounded-full hover:bg-blue-400 transition-all duration-300 transform hover:scale-110 relative"
                     onMouseEnter={(e) => {
                       setHoveredIcon(name);
-                      setTooltipPosition(e.currentTarget.offsetLeft + e.currentTarget.offsetWidth / 2 - 33);
+                      setTooltipPosition(
+                        e.currentTarget.offsetLeft +
+                          e.currentTarget.offsetWidth / 2 -
+                          33
+                      );
                     }}
                     onMouseLeave={() => setHoveredIcon(null)}
                   >
