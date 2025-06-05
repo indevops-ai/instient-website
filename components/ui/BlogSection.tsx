@@ -22,10 +22,7 @@ export function BlogSection() {
   useEffect(() => {
     if (!apiToken) return;
     const myHeaders = new Headers();
-    myHeaders.append(
-      "Authorization",
-      `Bearer ${apiToken}`
-    );
+    myHeaders.append("Authorization", `Bearer ${apiToken}`);
 
     const requestOptions = {
       method: "GET",
@@ -60,7 +57,9 @@ export function BlogSection() {
                 <p className="text-sm mb-2">{blogItem.publish_date}</p>
               </div>
               <div className="mt-3 sm:mt-0 sm:ml-auto">
-                <Link href={`/blogs/${blogItem.slug}`}>
+                <Link
+                  href={`https://instient-blogs.hashnode.dev/${blogItem.slug}`}
+                >
                   <Button
                     size="sm"
                     className="rounded-full border-black border-2 text-black font-ubuntu bg-white 

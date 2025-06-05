@@ -100,7 +100,7 @@ export default function HomeSlider() {
                     alt={banner.banner_title || "Home Banner"}
                     width={700}
                     height={400}
-                    className="shadow-lg object-cover w-full h-full"
+                    className="shadow-lg object-fill w-full h-full"
                   />
                 ) : (
                   <div className="w-[700px] h-[300px] bg-gray-800 flex items-center justify-center text-white">

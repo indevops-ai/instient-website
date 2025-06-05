@@ -77,24 +77,25 @@ export function Footer() {
       {/* Middle Section - Info & Links */}
       <div className="bg-gray-50 text-gray-800 py-6 px-6 text-left lg:text-left">
         <div className="container mx-auto flex flex-col lg:flex-row justify-start lg:justify-between items-start">
-          <div className="flex flex-col items-start lg:items-start">
+          <div className="flex flex-col items-start lg:items-start flex-shrink-0">
             <Link href="/">
               <Image
                 src="/Instient Logo2.svg"
                 alt="Logo"
                 width={150}
                 height={150}
-                className="mx-auto mt-2 mb-4 lg:mx-0"
+                className="mx-auto mt-2  lg:mx-0"
               />
             </Link>
             <Link
               href="https://nasscom.in/members-listing"
               target="_blank"
               rel="noopener noreferrer"
+              className="w-full sm:w-auto"
             >
               <div className="rounded-md inline-flex items-center space-x-3   cursor-pointer">
                 <div className="text-xl font-semibold font-ubuntu text-red-700 tracking-wide">
-                  Trusted by
+                  Affiliation with
                 </div>
                 <Image
                   src="/deep-red-nasscom.png"
@@ -106,14 +107,15 @@ export function Footer() {
             </Link>
           </div>
 
-          <div className="flex flex-col lg:flex-row mt-10 lg:mt-0">
-            <div>
-              <ul className="text-base">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 flex-grow lg:max-w-md">
+            {/* Main Routes */}
+            <div className="text-left sm:text-left lg:text-left">
+              <ul className="text-sm sm:text-base lg:text-base space-y-2">
                 {footerRoutes.map((route) => (
-                  <li key={route.href} className="mt-2 mb-2">
+                  <li key={route.href}>
                     <Link
                       href={route.href}
-                      className="hover:text-primary transition"
+                      className="hover:text-primary transition-colors duration-200 block py-1"
                     >
                       {route.name}
                     </Link>
@@ -122,13 +124,14 @@ export function Footer() {
               </ul>
             </div>
 
-            <div className="mt-8 lg:mt-0 lg:px-72">
-              <ul className="text-base">
+            {/* Policy Links */}
+            <div className="text-left sm:text-left lg:text-left">
+              <ul className="text-sm sm:text-base lg:text-base space-y-2">
                 {policyLinks.map((policy) => (
-                  <li key={policy.href} className="mt-2 mb-2">
+                  <li key={policy.href}>
                     <Link
                       href={policy.href}
-                      className="hover:text-primary transition"
+                      className="hover:text-primary transition-colors duration-200 block py-1"
                     >
                       {policy.name}
                     </Link>

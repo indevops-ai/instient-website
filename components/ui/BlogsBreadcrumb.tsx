@@ -18,15 +18,12 @@ async function fetchBlogs(): Promise<Subpage[]> {
   const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
   const apiUrl = process.env.NEXT_PUBLIC_API_DOMAIN;
 
-  const response = await fetch(
-    `${apiUrl}/api/blogs?populate=*`,
-    {
-      headers: {
-        Authorization: `Bearer ${apiToken}`,
-      },
-      cache: "no-store",
-    }
-  );
+  const response = await fetch(`${apiUrl}/api/blogs?populate=*`, {
+    headers: {
+      Authorization: `Bearer ${apiToken}`,
+    },
+    cache: "no-store",
+  });
 
   if (!response.ok) {
     console.error("Failed to fetch blogs:", response.status);
@@ -38,7 +35,7 @@ async function fetchBlogs(): Promise<Subpage[]> {
   return (
     data?.data?.map((blog: BlogItem) => ({
       name: blog.Title,
-      href: `/blogs/${blog.slug}`,
+      href: `https://instient-blogs.hashnode.dev/${blog.slug}`,
     })) || []
   );
 }

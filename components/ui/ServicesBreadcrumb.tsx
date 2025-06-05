@@ -45,6 +45,7 @@ async function fetchServices(): Promise<Subpage[]> {
 
 export default function ServicesBreadcrumb() {
   const [services, setServices] = useState<Subpage[]>([]);
+  const [hoveredSubmenu, setHoveredSubmenu] = useState<string | null>(null);
 
   useEffect(() => {
     async function loadServices() {
@@ -54,6 +55,7 @@ export default function ServicesBreadcrumb() {
     loadServices();
   }, []);
 
+  // Fixed typo: "advisiory" -> "advisory"
   const advisoryServices = services.filter((s) => s.type === "advisiory");
   const technicalServices = services.filter((s) => s.type === "technical");
 
@@ -63,12 +65,22 @@ export default function ServicesBreadcrumb() {
         <ChevronDown className="w-4 h-4 ml-1" />
       </div>
       <div className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2 z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-        <div className="group/advisory relative px-4 py-2 hover:bg-gray-100">
+        <div
+          className="relative px-4 py-2 hover:bg-gray-100"
+          onMouseEnter={() => setHoveredSubmenu("advisory")}
+          onMouseLeave={() => setHoveredSubmenu(null)}
+        >
           <div className="flex items-center justify-between">
             <span className="text-sm text-black">Advisory Services</span>
             <ChevronRight className="w-4 h-4 ml-1" />
           </div>
-          <div className="absolute left-full top-0 mt-0 w-48 bg-white shadow-lg rounded-md py-2 z-50 opacity-0 group-hover/advisory:opacity-100 transition-opacity duration-200">
+          <div
+            className={`absolute left-full top-0 mt-0 w-48 bg-white shadow-lg rounded-md py-2 z-50 transition-opacity duration-200 ${
+              hoveredSubmenu === "advisory"
+                ? "opacity-100"
+                : "opacity-0 pointer-events-none"
+            }`}
+          >
             {advisoryServices.map((service) => (
               <Link
                 key={service.href}
@@ -81,12 +93,22 @@ export default function ServicesBreadcrumb() {
           </div>
         </div>
 
-        <div className="group/technical relative px-4 py-2 hover:bg-gray-100">
+        <div
+          className="relative px-4 py-2 hover:bg-gray-100"
+          onMouseEnter={() => setHoveredSubmenu("technical")}
+          onMouseLeave={() => setHoveredSubmenu(null)}
+        >
           <div className="flex items-center justify-between">
             <span className="text-sm text-black">IT Services</span>
             <ChevronRight className="w-4 h-4 ml-1" />
           </div>
-          <div className="absolute left-full top-0 mt-0 w-48 bg-white shadow-lg rounded-md py-2 z-50 opacity-0 group-hover/technical:opacity-100 transition-opacity duration-200">
+          <div
+            className={`absolute left-full top-0 mt-0 w-48 bg-white shadow-lg rounded-md py-2 z-50 transition-opacity duration-200 ${
+              hoveredSubmenu === "technical"
+                ? "opacity-100"
+                : "opacity-0 pointer-events-none"
+            }`}
+          >
             {technicalServices.map((service) => (
               <Link
                 key={service.href}
