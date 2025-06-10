@@ -71,7 +71,7 @@ async function fetchBlogs(): Promise<Subpage[]> {
   return (
     data?.data?.map((blog: BlogItem) => ({
       name: blog.Title,
-      href: `https://instient-blogs.hashnode.dev/${blog.slug}`,
+      href: `https://blogs.instient.ai/${blog.slug}`,
     })) || []
   );
 }
@@ -315,6 +315,8 @@ export function Navbar({
                     <Link
                       key={blog.href}
                       href={blog.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="block px-4 py-2 text-sm text-black hover:bg-gray-200"
                     >
                       {blog.name}

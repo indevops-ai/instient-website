@@ -95,7 +95,7 @@ export function Footer() {
             >
               <div className="rounded-md inline-flex items-center space-x-3   cursor-pointer">
                 <div className="text-xl font-semibold font-ubuntu text-red-700 tracking-wide">
-                  Affiliation with
+                  affiliation with
                 </div>
                 <Image
                   src="/deep-red-nasscom.png"

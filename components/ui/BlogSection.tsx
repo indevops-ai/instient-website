@@ -58,7 +58,9 @@ export function BlogSection() {
               </div>
               <div className="mt-3 sm:mt-0 sm:ml-auto">
                 <Link
-                  href={`https://instient-blogs.hashnode.dev/${blogItem.slug}`}
+                  href={`https://blogs.instient.ai//${blogItem.slug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <Button
                     size="sm"
